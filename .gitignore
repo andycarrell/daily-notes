@@ -1,5 +1,8 @@
 # packages
 node_modules/
 
-#
+# build
 dist/
+
+# whatever this is
+.DS_Store
