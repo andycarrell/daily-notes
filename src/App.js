@@ -1,28 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Page = ({ children }) => (
-  <div className="bg-gray-800 min-h-screen">{children}</div>
-);
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
-const Layout = ({ children }) => (
-  <div className="h-full flex flex-col items-center px-4 sm:px-0 pt-[25vh]">
-    {children}
-  </div>
-);
+import { Page, Layout, Card } from "./components/layout";
+import Button from "./components/Button";
+
+import useDateReducer from "../utilities/useDateReducer";
 
 const App = () => {
-  const [date] = useState(() => new Date());
+  const [date, dispatch] = useDateReducer();
+
+  useEffect(() => {
+    document.title = `${date.toDateString()} - daily-notes`;
+  }, [date]);
 
   return (
-    <Page>
-      <Layout>
-        <div className="max-w-xl w-full border-2 border-gray-600 bg-gray-700 bg-opacity-40 shadow-md rounded-lg p-5">
-          <h1 className="text-3xl font-serif text-gray-300 font-bold mb-6">
-            {date.toDateString()}
-          </h1>
-        </div>
-      </Layout>
-    </Page>
+    <div className="antialiased">
+      <Page>
+        <Layout>
+          <Card>
+            <div className="flex flex-row w-full justify-between items-center mb-6">
+              <h1 className="text-xl sm:text-3xl font-serif text-gray-200 font-bold">
+                {date.toDateString()}
+              </h1>
+              <div className="flex flex-row space-x-1">
+                <Button
+                  className="text-gray-300 hover:text-gray-400 focus-visible:ring-1 focus-visible:ring-gray-300"
+                  onClick={() => dispatch("decrement-date")}
+                >
+                  <ChevronLeftIcon className="h-9 w-9" />
+                </Button>
+                <Button
+                  className="text-gray-300 hover:text-gray-400 focus-visible:ring-1 focus-visible:ring-gray-300"
+                  onClick={() => dispatch("increment-date")}
+                >
+                  <ChevronRightIcon className="h-9 w-9" />
+                </Button>
+              </div>
+            </div>
+            <div className="h-48 w-full" />
+          </Card>
+        </Layout>
+      </Page>
+    </div>
   );
 };
 
