@@ -42,7 +42,11 @@ const MarkdownEditor = ({ content = "", onChange = () => {} }) => {
     }
   });
 
-  return <EditorContent editor={editor} />;
+  return (
+    <div className="min-h-[16rem]">
+      <EditorContent editor={editor} />
+    </div>
+  );
 };
 
 export default MarkdownEditor;

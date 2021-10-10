@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
-import { Page, Layout, Card } from "./components/layout";
+import Note from "./components/Note";
 import Button from "./components/Button";
+import { Page, Layout, Card } from "./components/layout";
 
 import useDateReducer from "./utilities/useDateReducer";
 
@@ -19,7 +20,7 @@ const App = () => {
       <Page>
         <Layout>
           <Card>
-            <div className="flex flex-row w-full justify-between items-center mb-6">
+            <div className="flex flex-row w-full justify-between items-center mb-3 sm:mb-6">
               <h1 className="text-xl sm:text-3xl font-serif text-gray-200 font-bold">
                 {date.toDateString()}
               </h1>
@@ -38,7 +39,7 @@ const App = () => {
                 </Button>
               </div>
             </div>
-            <div className="h-48 w-full" />
+            <Note date={date} />
           </Card>
         </Layout>
       </Page>
