@@ -11,7 +11,7 @@ export const Layout = ({ children }) => (
 );
 
 export const Card = ({ children }) => (
-  <div className="max-w-xl w-full border-2 border-gray-600 bg-gray-700 bg-opacity-40 shadow-md rounded-lg px-4 sm:px-5 py-2 sm:py-5">
+  <div className="max-w-xl w-full border-2 border-gray-600 bg-gray-700 bg-opacity-40 shadow-md rounded-lg px-4 pb-4 sm:px-5 sm:pb-5 pt-2 sm:pt-5">
     {children}
   </div>
 );
