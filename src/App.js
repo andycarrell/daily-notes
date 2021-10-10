@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
 import { Page, Layout, Card } from "./components/layout";
 import Button from "./components/Button";
 
-import useDateReducer from "../utilities/useDateReducer";
+import useDateReducer from "./utilities/useDateReducer";
 
 const App = () => {
   const [date, dispatch] = useDateReducer();
