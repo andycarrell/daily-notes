@@ -1,3 +1,5 @@
+const typographyPlugin = require("@tailwindcss/typography");
+
 module.exports = {
   mode: "jit",
   purge: ["./src/**/*.html", "./src/**/*.js"],
@@ -6,5 +8,5 @@ module.exports = {
     extend: {},
   },
   variants: {},
-  plugins: [],
+  plugins: [typographyPlugin],
 };
