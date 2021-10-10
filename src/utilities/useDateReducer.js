@@ -2,8 +2,8 @@ import { useReducer } from "react";
 
 const changeDateByDays = (delta, date) => {
   const copy = new Date(date);
-  copy.setDate(date.getDate() + delta);
-  return copy;
+  copy.setDate(copy.getDate() + delta);
+  return copy.toISOString();
 };
 
 const reducer = (state, action) => {
@@ -18,6 +18,7 @@ const reducer = (state, action) => {
   throw new Error(`Unknown action ${action} for useDateReducer`);
 };
 
-const useDateReducer = () => useReducer(reducer, undefined, () => new Date());
+const useDateReducer = (initializer) =>
+  useReducer(reducer, undefined, initializer);
 
 export default useDateReducer;
