@@ -4,6 +4,7 @@
 
 body {
   -webkit-tap-highlight-color: transparent;
+  background-color: #1F2937;
 }
 
 /* Styles for tiptap.dev */
