@@ -30,7 +30,7 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
       }),
       Heading.configure({
         HTMLAttributes: {
-          class: "font-serif font-semibold",
+          class: "font-semibold",
         },
       }),
     ],

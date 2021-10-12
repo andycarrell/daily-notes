@@ -31,26 +31,26 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <Page>
           <Layout>
-            <Card>
-              <div className="flex flex-row w-full justify-between items-center mb-3 sm:mb-6">
-                <h1 className="text-xl sm:text-3xl font-serif font-bold text-gray-200">
-                  {displayFromISOString(date)}
-                </h1>
-                <div className="flex flex-row space-x-1">
-                  <Button
-                    className="text-gray-300 hover:text-gray-400 focus-visible:ring-1 focus-visible:ring-gray-300 pr-0.5"
-                    onClick={() => dispatch("decrement-date")}
-                  >
-                    <ChevronLeftIcon className="h-9 w-9" />
-                  </Button>
-                  <Button
-                    className="text-gray-300 hover:text-gray-400 focus-visible:ring-1 focus-visible:ring-gray-300 pl-0.5"
-                    onClick={() => dispatch("increment-date")}
-                  >
-                    <ChevronRightIcon className="h-9 w-9" />
-                  </Button>
-                </div>
+            <div className="flex flex-row w-full justify-between items-center mb-2 sm:mb-5">
+              <h1 className="text-xl sm:text-3xl font-serif font-bold text-gray-200 sm:text-gray-300">
+                {displayFromISOString(date)}
+              </h1>
+              <div className="flex flex-row space-x-1">
+                <Button
+                  className="text-gray-400 hover:text-gray-300 focus-visible:ring-1 focus-visible:ring-gray-300"
+                  onClick={() => dispatch("decrement-date")}
+                >
+                  <ChevronLeftIcon className="h-9 w-9 mr-0.5" />
+                </Button>
+                <Button
+                  className="text-gray-400 hover:text-gray-300 focus-visible:ring-1 focus-visible:ring-gray-300"
+                  onClick={() => dispatch("increment-date")}
+                >
+                  <ChevronRightIcon className="h-9 w-9 ml-0.5" />
+                </Button>
               </div>
+            </div>
+            <Card>
               <Note date={date} />
             </Card>
           </Layout>
