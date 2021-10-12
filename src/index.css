@@ -3,8 +3,8 @@
 @import "tailwindcss/utilities";
 
 body {
-  -webkit-tap-highlight-color: transparent;
   background-color: #1F2937;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Styles for tiptap.dev */
@@ -12,6 +12,10 @@ body {
 /* headings - override "@tailwindcss/typography" for (text) color */
 .ProseMirror.prose *:is(h1, h2, h3, h4, h5, h6, code) {
   color: rgba(243, 244, 246);
+}
+
+div[class~="ProseMirror"][contenteditable="false"] *:is(h1, h2, h3, h4, h5, h6, code) {
+  color: rgb(209, 213, 219);
 }
 
 /* Tasks list */
