@@ -5,7 +5,7 @@ export const Page = ({ children }) => (
 );
 
 export const Layout = ({ children }) => (
-  <div className="h-full max-w-xl mx-auto flex flex-col items-center px-4 sm:px-0 pt-12 sm:pt-[25vh]">
+  <div className="h-full max-w-xl mx-auto flex flex-col items-center px-4 sm:px-0 pt-12 sm:pt-[16vh]">
     {children}
   </div>
 );
