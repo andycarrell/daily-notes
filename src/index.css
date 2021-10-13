@@ -10,11 +10,15 @@ body {
 /* Styles for tiptap.dev */
 
 /* headings - override "@tailwindcss/typography" for (text) color */
-.ProseMirror.prose *:is(h1, h2, h3, h4, h5, h6, code) {
+.ProseMirror.prose *:is(h1, h2, h3, h4, h5, h6, code, strong) {
   color: rgba(243, 244, 246);
 }
 
-div[class~="ProseMirror"][contenteditable="false"] *:is(h1, h2, h3, h4, h5, h6, code) {
+.ProseMirror.prose *:is(h1, h2, h3, h4, h5, h6) > strong {
+  font-weight: 800;
+}
+
+div[class~="ProseMirror"][contenteditable="false"] *:is(h1, h2, h3, h4, h5, h6, code, strong) {
   color: rgb(209, 213, 219);
 }
 
