@@ -11,11 +11,17 @@ import useDateReducer from "./utilities/useDateReducer";
 
 const startOfUTCTodayToISOString = () => {
   const today = new Date();
-  const startOfUTCToday = new Date(today.setUTCHours(0, 0, 0, 0));
-  return startOfUTCToday.toISOString();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+  return `${year}-${month}-${day}T00:00:00.000Z`;
 };
 
-const displayFromISOString = (date) => new Date(date).toDateString();
+const displayFromISOString = (date) => {
+  // Strip the 'zero UTC offset', so notes appear on the same 'day' wherever & whenever they're viewed
+  const stripZOffset = date.slice(0, -1);
+  return new Date(stripZOffset).toDateString();
+};
 
 const queryClient = new QueryClient();
 
