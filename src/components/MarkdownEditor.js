@@ -19,18 +19,26 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
     },
     extensions: [
       StarterKit,
-      TaskItem,
-      TaskList,
+      Heading,
       Typography,
-      Code,
-      Link.configure({
+      Code.configure({
         HTMLAttributes: {
-          class: "cursor-pointer font-semibold hover:opacity-80",
+          class: "text-pink-300",
         },
       }),
-      Heading.configure({
+      TaskItem.configure({
         HTMLAttributes: {
-          class: "font-semibold",
+          class: "flex items-start space-x-4",
+        },
+      }),
+      TaskList.configure({
+        HTMLAttributes: {
+          class: "ml-px",
+        },
+      }),
+      Link.configure({
+        HTMLAttributes: {
+          class: "cursor-pointer font-semibold hover:text-pink-400",
         },
       }),
     ],
