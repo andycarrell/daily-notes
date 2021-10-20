@@ -14,7 +14,7 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
     editorProps: {
       attributes: {
         class:
-          `prose prose-pink min-h-[16rem] focus:outline-none p-4 ${editorClass}`.trim(),
+          `notes-editor prose prose-pink text-gray-100 caret-pink-600 min-h-[16rem] focus:outline-none p-4 ${editorClass}`.trim(),
       },
     },
     extensions: [
@@ -23,7 +23,7 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
       Typography,
       Code.configure({
         HTMLAttributes: {
-          class: "text-pink-300",
+          class: "!text-pink-300",
         },
       }),
       TaskItem.configure({
@@ -48,7 +48,6 @@ export const ReadOnlyEditor = ({ content = "" }) => {
   const editor = useMarkdownEditor({
     content,
     editable: false,
-    editorClass: "text-gray-300",
   });
 
   return <EditorContent editor={editor} />;
@@ -59,7 +58,7 @@ const MarkdownEditor = ({ content = "", onChange = () => {} }) => {
     content,
     onUpdate: ({ editor }) => onChange(editor.getJSON()),
     editorClass:
-      "text-gray-100 focus:ring-2 focus:ring-gray-600 focus:bg-gray-700 rounded-md",
+      "focus:ring-2 focus:ring-gray-600 focus:bg-gray-700 rounded-md",
   });
 
   return <EditorContent editor={editor} />;
