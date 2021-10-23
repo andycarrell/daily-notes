@@ -12,26 +12,42 @@ body {
 
 /* Styles for tiptap.dev */
 
-/* headings - override "@tailwindcss/typography" for (text) color */
-.notes-editor.prose *:is(h1, h2, h3, h4, h5, h6, strong) {
-  color: rgba(243, 244, 246);
-}
+.notes-editor {
+  /* override "@tailwindcss/typography" */
+  &.prose {
+    /* headings "*/
+    & h1, h2, h3, h4, h5, h6, strong {
+      color: rgba(243, 244, 246);
+    }
 
-.notes-editor.prose strong {
-  font-weight: bolder;
-}
+    /* bold "*/
+    & strong, b {
+      font-weight: bolder;
+    }
 
-div[class~="notes-editor"][contenteditable="false"] *:is(h1, h2, h3, h4, h5, h6, p, strong) {
-  color: rgb(255, 255, 255, 0.7);
-}
+    /* code */
+    & code {
+      &::before, &::after {
+        content: "";
+      }
+    }
 
-/* Bullet list - override "@tailwindcss/typography" */
-.notes-editor.prose > ul > li > *:first-child {
-  margin-top: 0.75em;
-}
+    /* bullet list */
+    & ul > li {
+      & > *:first-child {
+        margin-top: 0.75em;
+      }
+      & > *:last-child {
+        margin-bottom: 0.75em;
+      }
+    }
+  }
 
-.notes-editor.prose > ul > li > *:last-child {
-  margin-bottom: 0.75em;
+  &[contenteditable="false"] {
+    & h1, h2, h3, h4, h5, h6, p, strong {
+      color: rgb(255, 255, 255, 0.7);
+    }
+  }
 }
 
 /* Task item */
@@ -74,13 +90,4 @@ div[class~="notes-editor"][contenteditable="false"] *:is(h1, h2, h3, h4, h5, h6,
 
 .notes-editor ul[data-type="taskList"] li > div > p {
   margin: 0px;
-}
-
-/* Code - override "@tailwindcss/typography"*/
-.notes-editor.prose code::before {
-  content: "";
-}
-
-.notes-editor.prose code::after {
-  content: "";
 }
