@@ -21,19 +21,15 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
       StarterKit,
       Heading,
       Typography,
-      Code.configure({
+      Code,
+      TaskList.configure({
         HTMLAttributes: {
-          class: "!text-pink-300",
+          class: "task-list ml-px",
         },
       }),
       TaskItem.configure({
         HTMLAttributes: {
-          class: "flex items-start space-x-4",
-        },
-      }),
-      TaskList.configure({
-        HTMLAttributes: {
-          class: "ml-px",
+          class: "task-item",
         },
       }),
       Link.configure({

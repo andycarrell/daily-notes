@@ -13,20 +13,22 @@ body {
 /* Styles for tiptap.dev */
 
 .notes-editor {
-  /* override "@tailwindcss/typography" */
+  /* "@tailwindcss/typography" overrides */
   &.prose {
     /* headings "*/
-    & h1, h2, h3, h4, h5, h6, strong {
+    & h1, h2, h3, h4, h5, h6 {
       color: rgba(243, 244, 246);
     }
 
     /* bold "*/
     & strong, b {
+      color: rgba(243, 244, 246);
       font-weight: bolder;
     }
 
     /* code */
     & code {
+      color: rgba(249, 168, 212);
       &::before, &::after {
         content: "";
       }
@@ -41,6 +43,28 @@ body {
         margin-bottom: 0.75em;
       }
     }
+
+    /* task item */
+    & .task-item {
+      padding: 0px;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+
+      &::before {
+        display: none;
+      }
+
+      & > *:first-child {
+        margin-top: 0em;
+      }
+      & > *:last-child {
+        margin-bottom: 0em;
+      }
+
+      & > div > p {
+        margin: 0px;
+      }
+    }
   }
 
   &[contenteditable="false"] {
@@ -48,46 +72,30 @@ body {
       color: rgb(255, 255, 255, 0.7);
     }
   }
+
+  /* task item */
+  & .task-item {
+    display: flex;
+    align-items: flex-start;
+
+    &[data-checked="true"] {
+      text-decoration: line-through;
+    }
+
+    & > label {
+      flex: 0 0 auto;
+      padding-top: 1px;
+      user-select: none;
+      margin-right: 1em;
+    }
+
+    & > div {
+      flex: 1 1 auto;
+    }
+
+    & input[type="checkbox"] {
+      cursor: pointer;
+    }
+  }
 }
 
-/* Task item */
-.notes-editor ul[data-type="taskList"] li > label {
-  flex: 0 0 auto;
-  padding-top: 1px;
-  user-select: none;
-}
-
-.notes-editor ul[data-type="taskList"] li > div {
-  flex: 1 1 auto;
-}
-
-.notes-editor ul[data-type="taskList"] li input[type="checkbox"] {
-  cursor: pointer;
-}
-
-.notes-editor ul[data-type="taskList"] li[data-checked="true"] {
-  text-decoration: line-through;
-}
-
-/* Tasks list - override "@tailwindcss/typography" */
-.notes-editor ul[data-type="taskList"] li {
-  padding: 0px;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-.notes-editor ul[data-type="taskList"] li::before {
-  display: none;
-}
-
-.notes-editor ul[data-type="taskList"] li > *:first-child {
-  margin-top: 0px;
-}
-
-.notes-editor ul[data-type="taskList"] li > *:last-child {
-  margin-bottom: 0px;
-}
-
-.notes-editor ul[data-type="taskList"] li > div > p {
-  margin: 0px;
-}
