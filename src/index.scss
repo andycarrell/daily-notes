@@ -11,12 +11,11 @@ body {
 }
 
 /* Styles for tiptap.dev */
-
 .notes-editor {
   /* "@tailwindcss/typography" overrides */
   &.prose {
     /* headings "*/
-    & h1, h2, h3, h4, h5, h6 {
+    & .heading {
       color: rgba(243, 244, 246);
     }
 
@@ -27,7 +26,7 @@ body {
     }
 
     /* code */
-    & code {
+    & .code {
       color: rgba(249, 168, 212);
       &::before, &::after {
         content: "";
@@ -68,7 +67,7 @@ body {
   }
 
   &[contenteditable="false"] {
-    & h1, h2, h3, h4, h5, h6, p, strong {
+    & .heading, p, strong {
       color: rgb(255, 255, 255, 0.7);
     }
   }

@@ -19,9 +19,17 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
     },
     extensions: [
       StarterKit,
-      Heading,
       Typography,
-      Code,
+      Code.configure({
+        HTMLAttributes: {
+          class: "code",
+        },
+      }),
+      Heading.configure({
+        HTMLAttributes: {
+          class: "heading",
+        },
+      }),
       TaskList.configure({
         HTMLAttributes: {
           class: "task-list ml-px",
