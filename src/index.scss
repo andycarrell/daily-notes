@@ -2,6 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "./components/MarkdownEditor/markdown-editor.scss";
+
 * {
   -webkit-tap-highlight-color: transparent;
 }
@@ -9,92 +11,3 @@
 body {
   background-color: #1F2937;
 }
-
-/* Styles for tiptap.dev */
-.notes-editor {
-  /* "@tailwindcss/typography" overrides */
-  &.prose {
-    /* headings "*/
-    & .heading {
-      color: rgba(243, 244, 246);
-    }
-
-    /* bold "*/
-    & strong, b {
-      color: rgba(243, 244, 246);
-      font-weight: bolder;
-    }
-
-    /* code */
-    & .code {
-      color: rgba(249, 168, 212);
-      &::before, &::after {
-        content: "";
-      }
-    }
-
-    /* bullet list */
-    & ul > li {
-      & > *:first-child {
-        margin-top: 0.75em;
-      }
-      & > *:last-child {
-        margin-bottom: 0.75em;
-      }
-    }
-
-    /* task item */
-    & .task-item {
-      padding: 0px;
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
-
-      &::before {
-        display: none;
-      }
-
-      & > *:first-child {
-        margin-top: 0em;
-      }
-      & > *:last-child {
-        margin-bottom: 0em;
-      }
-
-      & > div > p {
-        margin: 0px;
-      }
-    }
-  }
-
-  &[contenteditable="false"] {
-    & .heading, p, strong {
-      color: rgb(255, 255, 255, 0.7);
-    }
-  }
-
-  /* task item */
-  & .task-item {
-    display: flex;
-    align-items: flex-start;
-
-    &[data-checked="true"] {
-      text-decoration: line-through;
-    }
-
-    & > label {
-      flex: 0 0 auto;
-      padding-top: 1px;
-      user-select: none;
-      margin-right: 1em;
-    }
-
-    & > div {
-      flex: 1 1 auto;
-    }
-
-    & input[type="checkbox"] {
-      cursor: pointer;
-    }
-  }
-}
-

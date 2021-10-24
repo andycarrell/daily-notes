@@ -14,7 +14,7 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
     editorProps: {
       attributes: {
         class:
-          `notes-editor prose prose-pink text-gray-100 caret-pink-600 min-h-[16rem] focus:outline-none p-4 ${editorClass}`.trim(),
+          `markdown-editor prose prose-pink text-gray-100 caret-pink-600 min-h-[16rem] focus:outline-none p-4 ${editorClass}`.trim(),
       },
     },
     extensions: [
