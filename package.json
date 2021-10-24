@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build:js": "esbuild src/index.js --bundle --minify --loader:.js=jsx --outfile=dist/bundle.js",
-    "build:css": "postcss src/index.scss -o dist/index.css",
+    "build:css": "postcss src/styles/index.scss -o dist/index.css",
     "build": "npm run prime && npm run build:js && npm run build:css",
     "format": "prettier --write src/",
     "prime": "copyfiles public/* dist --up=1",
