@@ -18,7 +18,7 @@
     "start": "npm run prime && concurrently \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\""
   },
   "dependencies": {
-    "@heroicons/react": "1.0.4",
+    "@heroicons/react": "1.0.5",
     "@tailwindcss/typography": "0.4.1",
     "@tiptap/extension-bold": "2.0.0-beta.19",
     "@tiptap/extension-bullet-list": "2.0.0-beta.18",
