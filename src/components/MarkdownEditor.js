@@ -1,10 +1,13 @@
 import React from "react";
 import StarterKit from "@tiptap/starter-kit";
+import Bold from "@tiptap/extension-bold";
 import Code from "@tiptap/extension-code";
 import Link from "@tiptap/extension-link";
 import Heading from "@tiptap/extension-heading";
 import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
+import ListItem from "@tiptap/extension-list-item";
+import BulletList from "@tiptap/extension-bullet-list";
 import Typography from "@tiptap/extension-typography";
 import { useEditor, EditorContent } from "@tiptap/react";
 
@@ -20,9 +23,24 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
     extensions: [
       StarterKit,
       Typography,
+      Bold.configure({
+        HTMLAttributes: {
+          class: "bold",
+        },
+      }),
       Code.configure({
         HTMLAttributes: {
           class: "code",
+        },
+      }),
+      ListItem.configure({
+        HTMLAttributes: {
+          class: "list-item",
+        },
+      }),
+      BulletList.configure({
+        HTMLAttributes: {
+          class: "bullet-list",
         },
       }),
       Heading.configure({

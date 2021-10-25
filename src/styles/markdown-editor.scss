@@ -8,7 +8,7 @@
     }
 
     /* bold "*/
-    & strong, b {
+    & .bold {
       color: rgba(243, 244, 246);
       font-weight: bolder;
     }
@@ -21,8 +21,8 @@
       }
     }
 
-    /* bullet list */
-    & ul > li {
+    /* list item */
+    & .list-item {
       & > *:first-child {
         margin-top: 0.75em;
       }
@@ -33,7 +33,7 @@
 
     /* task item */
     & .task-item {
-      padding: 0px;
+      padding: 0em;
       margin-top: 0.5em;
       margin-bottom: 0.5em;
 
@@ -55,7 +55,7 @@
   }
 
   &[contenteditable="false"] {
-    & .heading, p, strong {
+    & .heading, .bold, p {
       color: rgb(255, 255, 255, 0.7);
     }
   }
