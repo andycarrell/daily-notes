@@ -32,7 +32,7 @@
     "@tiptap/react": "2.0.0-beta.83",
     "@tiptap/starter-kit": "2.0.0-beta.127",
     "autoprefixer": "10.3.7",
-    "esbuild": "0.13.8",
+    "esbuild": "0.13.9",
     "localforage": "1.10.0",
     "postcss": "8.3.9",
     "postcss-cli": "9.0.1",
