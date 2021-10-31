@@ -14,7 +14,11 @@ const startOfUTCTodayToISOString = () => {
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
   const day = today.getDate();
-  return `${year}-${month}-${day}T00:00:00.000Z`;
+
+  const paddedDay =
+    ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09"][day] || day;
+
+  return `${year}-${month}-${paddedDay}T00:00:00.000Z`;
 };
 
 const displayFromISOString = (date) => {
