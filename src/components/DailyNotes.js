@@ -55,7 +55,9 @@ const DailyNotes = () => {
         </div>
       </div>
       <Card>
-        <Note date={date} />
+        <div className="min-h-[16rem] w-full">
+          <Note id={date} />
+        </div>
       </Card>
     </Layout>
   );

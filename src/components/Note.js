@@ -8,36 +8,30 @@ import { useDebounceFunction } from "../utilities/useDebounce";
 import SavingIndicator from "./SavingIndicator";
 import MarkdownEditor, { ReadOnlyEditor } from "./MarkdownEditor";
 
-const Note = ({ date }) => {
-  const { mutate, isLoading: isSaving } = useNoteMutation(date);
-  const { isError, isLoading, isFetching, data } = useNoteQuery(date);
+const Note = ({ id }) => {
+  const { mutate, isLoading: isSaving } = useNoteMutation(id);
+  const { isError, isLoading, isFetching, data } = useNoteQuery(id);
   const { item: content } = data ?? {};
 
   const saveNoteDebounced = useDebounceFunction(mutate, 1000);
 
   if (isError || isLoading) {
-    return <div className="min-h-[16rem]" />;
+    return null;
   }
 
   if (isFetching) {
-    return (
-      <div className="min-h-[16rem]">
-        <ReadOnlyEditor key={date} content={content ?? ""} />
-      </div>
-    );
+    return <ReadOnlyEditor key={id} content={content ?? ""} />;
   }
 
   return (
-    <div className="relative">
-      <div className="min-h-[16rem]">
-        <MarkdownEditor
-          key={date}
-          content={content ?? ""}
-          onChange={saveNoteDebounced}
-        />
-      </div>
+    <div className="relative w-full">
+      <MarkdownEditor
+        key={id}
+        content={content ?? ""}
+        onChange={saveNoteDebounced}
+      />
       <SavingIndicator isSaving={isSaving}>
-        <p className="absolute bottom-1 right-2 text-xs text-gray-500 font-semibold uppercase">
+        <p className="absolute top-1 right-2 text-xs text-gray-500 font-semibold uppercase">
           Saving
         </p>
       </SavingIndicator>

@@ -4,8 +4,10 @@ export const Page = ({ children }) => (
   <div className="bg-gray-800 min-h-screen">{children}</div>
 );
 
-export const Layout = ({ children }) => (
-  <div className="h-full max-w-xl mx-auto flex flex-col items-center px-4 sm:px-0 pt-12 sm:pt-[16vh]">
+export const Layout = ({ children, className = "" }) => (
+  <div
+    className={`h-full max-w-2xl mx-auto flex flex-col items-center px-4 pt-12 sm:pt-[16vh] ${className}`}
+  >
     {children}
   </div>
 );
