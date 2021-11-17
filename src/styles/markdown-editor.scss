@@ -16,7 +16,8 @@
     /* code */
     & .code {
       color: rgba(249, 168, 212);
-      &::before, &::after {
+      &::before,
+      &::after {
         content: "";
       }
     }
@@ -28,6 +29,18 @@
       }
       & > *:last-child {
         margin-bottom: 0.75em;
+      }
+    }
+
+    /* unordered list item */
+    & ul .list-item {
+      padding-left: 30px;
+    }
+
+    /* ordered list item */
+    & ol .list-item {
+      &::before {
+        color: rgba(243, 244, 246);
       }
     }
 
@@ -55,7 +68,9 @@
   }
 
   &[contenteditable="false"] {
-    & .heading, .bold, p {
+    & .heading,
+    .bold,
+    p {
       color: rgb(255, 255, 255, 0.7);
     }
   }
@@ -85,4 +100,3 @@
     }
   }
 }
-

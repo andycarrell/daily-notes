@@ -11,7 +11,7 @@ export const Layout = ({ children }) => (
 );
 
 export const Card = ({ children }) => (
-  <div className="w-full border-2 border-gray-600 bg-gray-700 bg-opacity-40 shadow-md rounded-lg p-0 sm:p-5">
+  <div className="w-full border-2 border-gray-600 bg-gray-700 bg-opacity-40 shadow-md rounded-lg">
     {children}
   </div>
 );

@@ -8,6 +8,7 @@ import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
 import ListItem from "@tiptap/extension-list-item";
 import BulletList from "@tiptap/extension-bullet-list";
+import OrderedList from "@tiptap/extension-ordered-list";
 import Typography from "@tiptap/extension-typography";
 import { useEditor, EditorContent } from "@tiptap/react";
 
@@ -41,6 +42,11 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
       BulletList.configure({
         HTMLAttributes: {
           class: "bullet-list",
+        },
+      }),
+      OrderedList.configure({
+        HTMLAttributes: {
+          class: "ordered-list ml-[2px]",
         },
       }),
       Heading.configure({
