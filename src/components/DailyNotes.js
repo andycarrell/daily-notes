@@ -34,7 +34,7 @@ const DailyNotes = () => {
   }, [date]);
 
   return (
-    <Layout>
+    <Layout className="max-w-2xl">
       <div className="flex flex-row w-full justify-between items-center mb-2 sm:mb-5">
         <h1 className="text-xl sm:text-3xl font-serif font-bold text-gray-200 sm:text-gray-300">
           {displayFromISOString(date)}
