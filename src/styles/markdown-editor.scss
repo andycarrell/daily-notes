@@ -2,6 +2,8 @@
 .markdown-editor {
   /* "@tailwindcss/typography" overrides */
   &.prose {
+    max-width: 100%;
+
     /* headings "*/
     & .heading {
       color: rgba(243, 244, 246);
