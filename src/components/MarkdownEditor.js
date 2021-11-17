@@ -56,7 +56,7 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
       }),
       TaskList.configure({
         HTMLAttributes: {
-          class: "task-list ml-px",
+          class: "task-list -ml-px",
         },
       }),
       TaskItem.configure({

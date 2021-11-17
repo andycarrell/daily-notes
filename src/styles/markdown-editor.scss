@@ -86,9 +86,9 @@
 
     & > label {
       flex: 0 0 auto;
-      padding-top: 1px;
+      padding-top: 2px;
       user-select: none;
-      margin-right: 1em;
+      margin-right: 15px;
     }
 
     & > div {
@@ -97,6 +97,35 @@
 
     & input[type="checkbox"] {
       cursor: pointer;
+      position: relative;
+      transition: background-color 200ms ease-out;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      outline: none;
+      height: 16px;
+      width: 16px;
+      background: rgba(243, 244, 246);
+      border: 1px solid rgba(75, 85, 99);
+      border-radius: 3px;
+
+      &:checked {
+        background: rgba(236, 72, 153);
+        &::after {
+          display: block;
+        }
+      }
+
+      &::after {
+        content: "\2713";
+        position: absolute;
+        display: none;
+        line-height: 0px;
+        font-size: 14px;
+        font-weight: 600;
+        top: 7px;
+        left: 1px;
+      }
     }
   }
 }
