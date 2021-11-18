@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import StarterKit from "@tiptap/starter-kit";
 import Bold from "@tiptap/extension-bold";
 import Code from "@tiptap/extension-code";
@@ -82,14 +82,22 @@ export const ReadOnlyEditor = ({ content = "" }) => {
 };
 
 const MarkdownEditor = ({ content = "", onChange = () => {} }) => {
+  const [hasFocus, setHasFocus] = useState(false);
+
   const editor = useMarkdownEditor({
     content,
+    onBlur: () => setHasFocus(false),
+    onFocus: () => setHasFocus(true),
     onUpdate: ({ editor }) => onChange(editor.getJSON()),
     editorClass:
       "focus:ring-2 focus:ring-gray-600 focus:bg-gray-700 rounded-md",
   });
 
-  return <EditorContent editor={editor} />;
+  return (
+    <div spellcheck={`${hasFocus}`}>
+      <EditorContent editor={editor} />
+    </div>
+  );
 };
 
 export default MarkdownEditor;

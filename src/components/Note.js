@@ -31,7 +31,7 @@ const Note = ({ id }) => {
         onChange={saveNoteDebounced}
       />
       <SavingIndicator isSaving={isSaving}>
-        <p className="absolute top-1 right-2 text-xs text-gray-500 font-semibold uppercase">
+        <p className="absolute top-1 right-1 text-xs text-gray-500 font-semibold uppercase">
           Saving
         </p>
       </SavingIndicator>
