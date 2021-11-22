@@ -16,9 +16,12 @@ const App = () => {
     <div className="antialiased">
       <QueryClientProvider client={queryClient}>
         <Page>
-          <div className="w-full flex flex-row justify-end p-4">
+          <div role="tablist" className="w-full flex flex-row justify-end p-4">
             {variant === "feed" && (
               <IconGrayButton
+                role="tab"
+                aria-selected="true"
+                aria-controls="daily-notes"
                 aria-label="Show daily notes"
                 onClick={() => {
                   setVariant("notes");
@@ -29,6 +32,10 @@ const App = () => {
             )}
             {variant === "notes" && (
               <IconGrayButton
+                role="tab"
+                aria-selected="true"
+                aria-controls="feed"
+                aria-label="Show daily notes"
                 aria-label="Show feed"
                 onClick={() => {
                   setVariant("feed");
@@ -38,8 +45,16 @@ const App = () => {
               </IconGrayButton>
             )}
           </div>
-          {variant === "feed" && <Feed />}
-          {variant === "notes" && <DailyNotes />}
+          {variant === "feed" && (
+            <div role="tabpanel" id="feed">
+              <Feed />
+            </div>
+          )}
+          {variant === "notes" && (
+            <div role="tabpanel" id="daily-notes">
+              <DailyNotes />
+            </div>
+          )}
         </Page>
       </QueryClientProvider>
     </div>
