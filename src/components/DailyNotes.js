@@ -5,8 +5,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import useDateReducer from "../utilities/useDateReducer";
 
 import Note from "./Note";
-import Button from "./Button";
 import { Layout, Card } from "./layout";
+import { IconGrayButton } from "./Button";
 
 const startOfUTCTodayToISOString = () => {
   const today = new Date();
@@ -40,18 +40,18 @@ const DailyNotes = () => {
           {displayFromISOString(date)}
         </h1>
         <div className="flex flex-row space-x-1">
-          <Button
-            className="text-gray-400 hover:text-gray-300 focus-visible:ring-1 focus-visible:ring-gray-300"
+          <IconGrayButton
+            aria-label="Decrement date"
             onClick={() => dispatch("decrement-date")}
           >
             <ChevronLeftIcon className="h-9 w-9 mr-0.5" />
-          </Button>
-          <Button
-            className="text-gray-400 hover:text-gray-300 focus-visible:ring-1 focus-visible:ring-gray-300"
+          </IconGrayButton>
+          <IconGrayButton
+            aria-label="Increment date"
             onClick={() => dispatch("increment-date")}
           >
             <ChevronRightIcon className="h-9 w-9 ml-0.5" />
-          </Button>
+          </IconGrayButton>
         </div>
       </div>
       <Card>
