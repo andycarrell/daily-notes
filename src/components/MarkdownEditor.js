@@ -10,6 +10,7 @@ import ListItem from "@tiptap/extension-list-item";
 import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
 import Typography from "@tiptap/extension-typography";
+import Underline from "@tiptap/extension-underline";
 import { useEditor, EditorContent } from "@tiptap/react";
 
 const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
@@ -24,6 +25,7 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
     extensions: [
       StarterKit,
       Typography,
+      Underline,
       Bold.configure({
         HTMLAttributes: {
           class: "bold",
