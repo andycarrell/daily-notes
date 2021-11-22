@@ -14,6 +14,7 @@ import ListItem from "@tiptap/extension-list-item";
 import Underline from "@tiptap/extension-underline";
 import Paragraph from "@tiptap/extension-paragraph";
 import CodeBlock from "@tiptap/extension-code-block";
+import HardBreak from "@tiptap/extension-hard-break";
 import Blockquote from "@tiptap/extension-blockquote";
 import Typography from "@tiptap/extension-typography";
 import BulletList from "@tiptap/extension-bullet-list";
@@ -31,16 +32,16 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
       },
     },
     extensions: [
-      // StarterKit,
       Text,
       Document,
       Paragraph,
       Typography,
-      CodeBlock,
-      Underline,
       Italic,
       Strike,
       History,
+      CodeBlock,
+      HardBreak,
+      Underline,
       HorizontalRule,
       Bold.configure({
         HTMLAttributes: {
