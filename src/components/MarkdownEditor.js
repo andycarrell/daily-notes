@@ -1,17 +1,24 @@
 import React, { useState } from "react";
-import StarterKit from "@tiptap/starter-kit";
 import Bold from "@tiptap/extension-bold";
 import Code from "@tiptap/extension-code";
 import Link from "@tiptap/extension-link";
+import Text from "@tiptap/extension-text";
+import Italic from "@tiptap/extension-italic";
+import Strike from "@tiptap/extension-strike";
 import Heading from "@tiptap/extension-heading";
+import History from "@tiptap/extension-history";
+import Document from "@tiptap/extension-document";
 import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
 import ListItem from "@tiptap/extension-list-item";
+import Underline from "@tiptap/extension-underline";
+import Paragraph from "@tiptap/extension-paragraph";
+import CodeBlock from "@tiptap/extension-code-block";
 import Blockquote from "@tiptap/extension-blockquote";
+import Typography from "@tiptap/extension-typography";
 import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
-import Typography from "@tiptap/extension-typography";
-import Underline from "@tiptap/extension-underline";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import { useEditor, EditorContent } from "@tiptap/react";
 
 const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
@@ -24,9 +31,17 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
       },
     },
     extensions: [
-      StarterKit,
+      // StarterKit,
+      Text,
+      Document,
+      Paragraph,
       Typography,
+      CodeBlock,
       Underline,
+      Italic,
+      Strike,
+      History,
+      HorizontalRule,
       Bold.configure({
         HTMLAttributes: {
           class: "bold",
