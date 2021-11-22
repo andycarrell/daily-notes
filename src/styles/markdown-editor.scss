@@ -2,6 +2,7 @@
 .markdown-editor {
   --tw-gray-100: rgba(243, 244, 246);
   --tw-gray-300: rgba(209, 213, 219);
+  --tw-pink-200: rgba(251, 207, 232);
   --tw-pink-300: rgba(249, 168, 212);
 
   /* "@tailwindcss/typography" overrides */
@@ -29,8 +30,8 @@
     }
 
     /* blockquote */
-    & blockquote {
-      color: var(--tw-gray-300);
+    & .blockquote {
+      color: var(--tw-pink-200);
 
       & p::before,
       & p::after {
