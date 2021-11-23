@@ -6,7 +6,7 @@ export const Page = ({ children }) => (
 
 export const Layout = ({ children, className = "" }) => (
   <div
-    className={`h-full mx-auto flex flex-col items-center px-4 pt-12 ${className}`}
+    className={`h-full mx-auto flex flex-col items-center px-4 pb-12 pt-12 ${className}`}
   >
     {children}
   </div>
