@@ -16,7 +16,10 @@ const App = () => {
     <div className="antialiased">
       <QueryClientProvider client={queryClient}>
         <Page>
-          <div role="tablist" className="w-full flex flex-row justify-end p-4">
+          <div
+            role="tablist"
+            className="bg-gray-800 lg:bg-transparent w-full sm:sticky inset-0 z-10 flex flex-row justify-end p-4"
+          >
             {variant === "feed" && (
               <IconGrayButton
                 role="tab"
