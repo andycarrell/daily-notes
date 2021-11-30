@@ -30,15 +30,15 @@ const deleteSearchParam = () => {
 };
 
 const startOfUTCTodayToISOString = () => {
+  const pad = (p) =>
+    ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09"][p] ?? p;
+
   const today = new Date();
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
   const day = today.getDate();
 
-  const paddedDay =
-    ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09"][day] || day;
-
-  return `${year}-${month}-${paddedDay}${START_OF_DAY_ISO}`;
+  return `${year}-${pad(month)}-${pad(day)}${START_OF_DAY_ISO}`;
 };
 
 const displayFromISOString = (date) => {
