@@ -20,7 +20,7 @@ const App = () => {
             role="tablist"
             className="bg-gray-800 lg:bg-transparent w-full sm:sticky inset-0 z-10 flex flex-row justify-end p-4"
           >
-            {variant === "feed" && (
+            {variant === "feed" ? (
               <IconGrayButton
                 role="tab"
                 aria-selected="true"
@@ -32,13 +32,12 @@ const App = () => {
               >
                 <ClipboardListIcon className="h-8 w-8" />
               </IconGrayButton>
-            )}
-            {variant === "notes" && (
+            ) : null}
+            {variant === "notes" ? (
               <IconGrayButton
                 role="tab"
                 aria-selected="true"
                 aria-controls="feed"
-                aria-label="Show daily notes"
                 aria-label="Show feed"
                 onClick={() => {
                   setVariant("feed");
@@ -46,18 +45,18 @@ const App = () => {
               >
                 <DocumentTextIcon className="h-8 w-8" />
               </IconGrayButton>
-            )}
+            ) : null}
           </div>
-          {variant === "feed" && (
+          {variant === "feed" ? (
             <div role="tabpanel" id="feed">
               <Feed />
             </div>
-          )}
-          {variant === "notes" && (
+          ) : null}
+          {variant === "notes" ? (
             <div role="tabpanel" id="daily-notes">
               <DailyNotes />
             </div>
-          )}
+          ) : null}
         </Page>
       </QueryClientProvider>
     </div>
