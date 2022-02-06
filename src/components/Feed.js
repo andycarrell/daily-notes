@@ -6,16 +6,11 @@ import { ViewGridAddIcon } from "@heroicons/react/solid";
 import useFeedQuery from "../api/useFeedQuery";
 import useFeedMutation from "../api/useFeedMutation";
 
+import useSearchParam from "../utilities/useSearchParam";
+
 import Note from "./Note";
 import { Layout } from "./layout";
 import { IconGrayButton } from "./Button";
-
-// TODO - move this into a utility file
-const getSearchParam = () => {
-  const url = new URL(window.location);
-  const value = url.searchParams.get("f");
-  return value;
-};
 
 const nanoid = customAlphabet("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6);
 
@@ -45,6 +40,8 @@ const Feed = () => {
   const { isError, isLoading, data } = useFeedQuery();
   const { mutate } = useFeedMutation();
   const ids = data?.item ?? [];
+
+  const [getSearchParam] = useSearchParam("f");
 
   useEffect(() => {
     document.title = "Feed - daily-notes";

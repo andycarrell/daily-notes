@@ -3,31 +3,13 @@ import React, { useEffect } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
 import useDateReducer from "../utilities/useDateReducer";
+import useSearchParam from "../utilities/useSearchParam";
 
 import Note from "./Note";
 import { Layout, Card } from "./layout";
 import { IconGrayButton } from "./Button";
 
-const PARAM = "d";
 const START_OF_DAY_ISO = "T00:00:00.000Z";
-
-const getSearchParam = () => {
-  const url = new URL(window.location);
-  const value = url.searchParams.get(PARAM);
-  return value;
-};
-
-const updateSearchParam = (value) => {
-  const url = new URL(window.location);
-  url.searchParams.set(PARAM, value);
-  window.history.pushState("", "", url.href);
-};
-
-const deleteSearchParam = () => {
-  const url = new URL(window.location);
-  url.searchParams.delete(PARAM);
-  window.history.pushState("", "", url.href);
-};
 
 const startOfUTCTodayToISOString = () => {
   const pad = (p) =>
@@ -47,16 +29,17 @@ const displayFromISOString = (date) => {
   return new Date(stripZOffset).toDateString();
 };
 
-const getInitialDate = () => {
-  const raw = getSearchParam();
-  if (raw) {
-    return `${raw}${START_OF_DAY_ISO}`;
-  }
-  return startOfUTCTodayToISOString();
-};
-
 const DailyNotes = () => {
-  const [date, dispatch] = useDateReducer(getInitialDate);
+  const [getSearchParam, updateSearchParam, deleteSearchParam] =
+    useSearchParam("d");
+
+  const [date, dispatch] = useDateReducer(() => {
+    const raw = getSearchParam();
+    if (raw) {
+      return `${raw}${START_OF_DAY_ISO}`;
+    }
+    return startOfUTCTodayToISOString();
+  });
 
   useEffect(() => {
     document.title = `${displayFromISOString(date)} - daily-notes`;
