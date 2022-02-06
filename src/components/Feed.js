@@ -10,7 +10,36 @@ import Note from "./Note";
 import { Layout } from "./layout";
 import { IconGrayButton } from "./Button";
 
+// TODO - move this into a utility file
+const getSearchParam = () => {
+  const url = new URL(window.location);
+  const value = url.searchParams.get("f");
+  return value;
+};
+
 const nanoid = customAlphabet("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6);
+
+const ScrollElementIntoView = ({ id }) => {
+  useEffect(() => {
+    const node = document.getElementById(id);
+
+    if (node) {
+      const id = setTimeout(
+        () =>
+          node.scrollIntoView({
+            block: "start",
+            inline: "nearest",
+            behavior: "smooth",
+          }),
+        300
+      );
+
+      return () => clearTimeout(id);
+    }
+  }, [id]);
+
+  return null;
+};
 
 const Feed = () => {
   const { isError, isLoading, data } = useFeedQuery();
@@ -21,7 +50,7 @@ const Feed = () => {
     document.title = "Feed - daily-notes";
   }, []);
 
-  if (isError || isLoading) {
+  if (isError) {
     return null;
   }
 
@@ -38,18 +67,21 @@ const Feed = () => {
           <ViewGridAddIcon className="h-7 w-7 sm:h-8 sm:w-8" />
         </IconGrayButton>
       </div>
-      <div className="divide-y divide-gray-600">
-        {ids.map((id) => (
-          <div className="flex flex-col-reverse pt-6">
-            <h2 className="self-end text-sm text-gray-500 font-semibold my-2 mr-1">
-              {id}
-            </h2>
-            <Note id={`feed-${id}`} key={id} />
-          </div>
-        ))}
-        {/** Temporarily here until content can be migrated */}
-        <Note id="feed" className="py-6" />
-      </div>
+      {isLoading ? null : (
+        <div className="w-full divide-y divide-gray-600">
+          {ids.map((id) => (
+            <div id={id} key={id} className="flex flex-col-reverse pt-6">
+              <h2 className="self-end text-sm text-gray-500 font-semibold my-2 mr-1">
+                {id}
+              </h2>
+              <Note id={`feed-${id}`} />
+            </div>
+          ))}
+          {/** Temporarily here until content can be migrated */}
+          <Note id="feed" className="py-6" />
+          <ScrollElementIntoView id={getSearchParam()} />
+        </div>
+      )}
     </Layout>
   );
 };
