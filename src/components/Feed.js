@@ -11,6 +11,7 @@ import useSearchParam from "../utilities/useSearchParam";
 import Note from "./Note";
 import { Layout } from "./layout";
 import { IconGrayButton } from "./Button";
+import DeferUntilViewport from "./DeferUntilViewport";
 
 const nanoid = customAlphabet("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6);
 
@@ -71,7 +72,11 @@ const Feed = () => {
               <h2 className="self-end text-sm text-gray-500 font-semibold my-2 mr-1">
                 {id}
               </h2>
-              <Note id={`feed-${id}`} />
+              <div className="min-h-[16rem]">
+                <DeferUntilViewport>
+                  <Note id={`feed-${id}`} />
+                </DeferUntilViewport>
+              </div>
             </div>
           ))}
           {/** Temporarily here until content can be migrated */}
