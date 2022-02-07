@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
@@ -76,7 +76,9 @@ const DailyNotes = () => {
       </div>
       <Card>
         <div className="min-h-[16rem] w-full">
-          <Note id={date} />
+          <Suspense fallback={null}>
+            <Note id={date} />
+          </Suspense>
         </div>
       </Card>
     </Layout>
