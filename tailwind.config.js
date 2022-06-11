@@ -1,12 +1,9 @@
 const typographyPlugin = require("@tailwindcss/typography");
 
 module.exports = {
-  mode: "jit",
-  purge: ["./src/**/*.html", "./src/**/*.js"],
-  darkMode: false,
+  content: ["./src/**/*.html", "./src/**/*.js"],
   theme: {
     extend: {},
   },
-  variants: {},
   plugins: [typographyPlugin],
 };

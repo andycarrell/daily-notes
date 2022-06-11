@@ -70,7 +70,7 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
       }),
       OrderedList.configure({
         HTMLAttributes: {
-          class: "ordered-list ml-[2px]",
+          class: "ordered-list",
         },
       }),
       Heading.configure({
@@ -80,7 +80,7 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
       }),
       TaskList.configure({
         HTMLAttributes: {
-          class: "task-list -ml-px",
+          class: "task-list",
         },
       }),
       TaskItem.configure({
