@@ -39,6 +39,16 @@
       }
     }
 
+    /* bullet-list */
+    & .bullet-list {
+      padding-left: 18px;
+    }
+
+    /* ordered-list */
+    & .ordered-list {
+      padding-left: 20px;
+    }
+
     /* list item */
     & .list-item {
       & > *:first-child {
@@ -51,35 +61,13 @@
 
     /* unordered list item */
     & ul .list-item {
-      padding-left: 30px;
+      padding-left: 8px;
     }
 
     /* ordered list item */
     & ol .list-item {
-      &::before {
+      &::marker {
         color: var(--tw-gray-100);
-      }
-    }
-
-    /* task item */
-    & .task-item {
-      padding: 0em;
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
-
-      &::before {
-        display: none;
-      }
-
-      & > *:first-child {
-        margin-top: 0em;
-      }
-      & > *:last-child {
-        margin-bottom: 0em;
-      }
-
-      & > div > p {
-        margin: 0px;
       }
     }
   }
@@ -92,10 +80,33 @@
     }
   }
 
+  /* task list */
+  & .task-list {
+    padding-left: 0px;
+  }
+
   /* task item */
   & .task-item {
     display: flex;
     align-items: flex-start;
+    padding: 0em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+
+    &::before {
+      display: none;
+    }
+
+    & > *:first-child {
+      margin-top: 0em;
+    }
+    & > *:last-child {
+      margin-bottom: 0em;
+    }
+
+    & > div > p {
+      margin: 0px;
+    }
 
     &[data-checked="true"] {
       text-decoration: line-through;
