@@ -99,7 +99,8 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
             // input
             "[&_input]:appearance-none [&_input]:cursor-pointer [&_input]:h-4 [&_input]:w-4 [&_input]:bg-gray-100 [&_input]:border [&_input]:border-gray-600 [&_input]:rounded-sm",
             // checkmark
-            "[&_input]:after:-rotate-6 [&_input]:after:text-white [&_input]:after:hidden [&_input]:after:h-3.5 [&_input]:after:w-3.5",
+            "[&_input]:after:hidden [&_input]:after:-rotate-6 [&_input]:after:text-white [&_input]:after:h-3.5 [&_input]:after:w-3.5",
+            `[&_input]:after:bg-checkbox [&_input]:after:bg-contain [&_input]:after:bg-no-repeat [&_input]:after:bg-center`,
             // psuedo
             "[&_input:checked]:bg-pink-500 [&_input:checked]:after:block",
             "[&_input:focus]:outline-none [&_input:focus-visible]:outline-1 [&_input:focus-visible]:outline-offset-1 [&_input:focus-visible]:outline-pink-300",
