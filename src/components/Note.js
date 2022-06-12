@@ -6,7 +6,7 @@ import useNoteMutation from "../api/useNoteMutation";
 import { useDebounceFunction } from "../utilities/useDebounce";
 
 import SavingIndicator from "./SavingIndicator";
-import MarkdownEditor, { ReadOnlyEditor } from "./MarkdownEditor";
+import MarkdownEditor from "./MarkdownEditor";
 
 const Note = ({ id }) => {
   const { mutate, isLoading: isSaving } = useNoteMutation(id);
@@ -19,15 +19,12 @@ const Note = ({ id }) => {
     return null;
   }
 
-  if (isFetching) {
-    return <ReadOnlyEditor key={id} content={content ?? ""} />;
-  }
-
   return (
     <div className="relative w-full">
       <MarkdownEditor
         key={id}
         content={content ?? ""}
+        isDisabled={isFetching}
         onChange={saveNoteDebounced}
       />
       <SavingIndicator isSaving={isSaving}>

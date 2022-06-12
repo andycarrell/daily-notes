@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Bold from "@tiptap/extension-bold";
 import Code from "@tiptap/extension-code";
 import Link from "@tiptap/extension-link";
@@ -22,15 +22,35 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import { useEditor, EditorContent } from "@tiptap/react";
 
-const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
-  useEditor({
-    ...rest,
-    editorProps: {
-      attributes: {
-        class:
-          `markdown-editor prose prose-pink selection:bg-pink-300 selection:text-pink-900 text-gray-100 caret-pink-600 min-h-[16rem] max-w-full focus:outline-none p-4 ${editorClass}`.trim(),
-      },
+const getEditorClass = (c = "") =>
+  `markdown-editor prose prose-pink selection:bg-pink-300 selection:text-pink-900 text-gray-100 caret-pink-600 min-h-[16rem] max-w-full focus:outline-none p-4 ${c}`.trim();
+
+const enabledOptions = {
+  editable: true,
+  editorProps: {
+    attributes: {
+      class: getEditorClass(
+        "focus:ring-2 focus:ring-gray-600 focus:bg-gray-700 rounded-md"
+      ),
     },
+  },
+};
+
+const disabledOptions = {
+  editable: false,
+  editorProps: {
+    attributes: {
+      class: getEditorClass(
+        "[&_.heading]:text-white/70 [&_.bold]:text-white/70 [&_p]:text-white/70"
+      ),
+    },
+  },
+};
+
+const useMarkdownEditor = ({ isDisabled, ...options }) => {
+  const editor = useEditor({
+    ...enabledOptions,
+    ...options,
     extensions: [
       Text,
       Document,
@@ -115,27 +135,29 @@ const useMarkdownEditor = ({ editorClass = "", ...rest }) =>
     ],
   });
 
-export const ReadOnlyEditor = ({ content = "" }) => {
-  const editor = useMarkdownEditor({
-    content,
-    editable: false,
-    editorClass:
-      "[&_.heading]:text-white/70 [&_.bold]:text-white/70 [&_p]:text-white/70",
-  });
+  useEffect(() => {
+    const isEditable = !isDisabled;
+    if (editor && editor.isEditable !== isEditable) {
+      editor.setOptions(isEditable ? enabledOptions : disabledOptions);
+    }
+  }, [editor, isDisabled]);
 
-  return <EditorContent editor={editor} />;
+  return editor;
 };
 
-const MarkdownEditor = ({ content = "", onChange = () => {} }) => {
+const MarkdownEditor = ({
+  content = "",
+  isDisabled = false,
+  onChange = () => {},
+}) => {
   const [hasFocus, setHasFocus] = useState(false);
 
   const editor = useMarkdownEditor({
     content,
+    isDisabled,
     onBlur: () => setHasFocus(false),
     onFocus: () => setHasFocus(true),
-    onUpdate: ({ editor }) => onChange(editor.getJSON()),
-    editorClass:
-      "focus:ring-2 focus:ring-gray-600 focus:bg-gray-700 rounded-md",
+    onUpdate: ({ editor: e }) => onChange(e.getJSON()),
   });
 
   return (
