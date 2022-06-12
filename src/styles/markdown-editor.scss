@@ -1,126 +1,17 @@
 /* Styles for tiptap.dev */
 .markdown-editor {
+  --tw-white: rgba(255, 255, 255);
   --tw-gray-100: rgba(243, 244, 246);
   --tw-gray-300: rgba(209, 213, 219);
+  --tw-gray-600: rgba(75, 85, 99);
   --tw-pink-200: rgba(251, 207, 232);
   --tw-pink-300: rgba(249, 168, 212);
-
-  /* "@tailwindcss/typography" overrides */
-  &.prose {
-    max-width: 100%;
-
-    /* headings "*/
-    & .heading {
-      color: var(--tw-gray-100);
-    }
-
-    /* bold "*/
-    & .bold {
-      color: var(--tw-gray-100);
-      font-weight: bolder;
-    }
-
-    /* code */
-    & .code {
-      color: var(--tw-pink-300);
-      &::before,
-      &::after {
-        content: "";
-      }
-    }
-
-    /* blockquote */
-    & .blockquote {
-      color: var(--tw-pink-200);
-
-      & p::before,
-      & p::after {
-        content: "";
-      }
-    }
-
-    /* bullet-list */
-    & .bullet-list {
-      padding-left: 18px;
-    }
-
-    /* ordered-list */
-    & .ordered-list {
-      padding-left: 20px;
-    }
-
-    /* list item */
-    & .list-item {
-      & > *:first-child {
-        margin-top: 0.75em;
-      }
-      & > *:last-child {
-        margin-bottom: 0.75em;
-      }
-    }
-
-    /* unordered list item */
-    & ul .list-item {
-      padding-left: 8px;
-    }
-
-    /* ordered list item */
-    & ol .list-item {
-      &::marker {
-        color: var(--tw-gray-100);
-      }
-    }
-  }
-
-  &[contenteditable="false"] {
-    & .heading,
-    .bold,
-    p {
-      color: rgba(255, 255, 255, 0.7);
-    }
-  }
-
-  /* task list */
-  & .task-list {
-    padding-left: 0px;
-  }
+  --tw-pink-500: rgba(236, 72, 153);
 
   /* task item */
   & .task-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 0em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-
-    &::before {
-      display: none;
-    }
-
-    & > *:first-child {
-      margin-top: 0em;
-    }
-    & > *:last-child {
-      margin-bottom: 0em;
-    }
-
-    & > div > p {
-      margin: 0px;
-    }
-
     &[data-checked="true"] {
       text-decoration: line-through;
-    }
-
-    & > label {
-      flex: 0 0 auto;
-      padding-top: 2px;
-      user-select: none;
-      margin-right: 15px;
-    }
-
-    & > div {
-      flex: 1 1 auto;
     }
 
     & input[type="checkbox"] {
@@ -134,13 +25,13 @@
       height: 16px;
       width: 16px;
       background: var(--tw-gray-100);
-      border: 1px solid rgba(75, 85, 99);
+      border: 1px solid var(--tw-gray-600);
       border-radius: 3px;
 
       &::after {
         content: "";
         display: none;
-        color: rgba(255, 255, 255);
+        color: var(--tw-white);
         width: 14px;
         height: 14px;
         transform: rotate(-6deg);
@@ -151,7 +42,7 @@
       }
 
       &:checked {
-        background: rgba(236, 72, 153);
+        background: var(--tw-pink-500);
         &::after {
           display: block;
         }
