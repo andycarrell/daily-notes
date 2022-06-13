@@ -24,7 +24,7 @@ const Note = ({ id }) => {
       <MarkdownEditor
         key={id}
         content={content ?? ""}
-        isDisabled={isFetching}
+        isEditable={!isFetching}
         onChange={saveNoteDebounced}
       />
       <SavingIndicator isSaving={isSaving}>

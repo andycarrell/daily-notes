@@ -47,7 +47,7 @@ const disabledOptions = {
   },
 };
 
-const useMarkdownEditor = ({ isDisabled, ...options }) => {
+const useMarkdownEditor = ({ isEditable, ...options }) => {
   const editor = useEditor({
     ...enabledOptions,
     ...options,
@@ -136,25 +136,24 @@ const useMarkdownEditor = ({ isDisabled, ...options }) => {
   });
 
   useEffect(() => {
-    const isEditable = !isDisabled;
     if (editor && editor.isEditable !== isEditable) {
       editor.setOptions(isEditable ? enabledOptions : disabledOptions);
     }
-  }, [editor, isDisabled]);
+  }, [editor, isEditable]);
 
   return editor;
 };
 
 const MarkdownEditor = ({
   content = "",
-  isDisabled = false,
+  isEditable = true,
   onChange = () => {},
 }) => {
   const [hasFocus, setHasFocus] = useState(false);
 
   const editor = useMarkdownEditor({
     content,
-    isDisabled,
+    isEditable,
     onBlur: () => setHasFocus(false),
     onFocus: () => setHasFocus(true),
     onUpdate: ({ editor: e }) => onChange(e.getJSON()),
