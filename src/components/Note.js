@@ -3,7 +3,7 @@ import React from "react";
 import useNoteQuery from "../api/useNoteQuery";
 import useNoteMutation from "../api/useNoteMutation";
 
-import { useDebounceFunction } from "../utilities/useDebounce";
+import useIdleCallback from "../utilities/useIdleCallback";
 
 import SavingIndicator from "./SavingIndicator";
 import MarkdownEditor from "./MarkdownEditor";
@@ -13,7 +13,7 @@ const Note = ({ id }) => {
   const { isError, isLoading, isFetching, data } = useNoteQuery(id);
   const { item: content } = data ?? {};
 
-  const saveNoteDebounced = useDebounceFunction(mutate, 1000);
+  const saveNoteDebounced = useIdleCallback(mutate, { timeout: 2000 });
 
   if (isError || isLoading) {
     return null;
@@ -28,7 +28,7 @@ const Note = ({ id }) => {
         onChange={saveNoteDebounced}
       />
       <SavingIndicator isSaving={isSaving}>
-        <p className="absolute top-1 right-1 text-xs text-gray-500 font-semibold uppercase">
+        <p className="absolute top-1 right-1.5 text-xs text-gray-500 font-semibold uppercase">
           Saving
         </p>
       </SavingIndicator>
