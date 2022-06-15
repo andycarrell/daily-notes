@@ -114,12 +114,12 @@ const useMarkdownEditor = ({ isEditable, ...options }) => {
             "[&_.task-list]:my-0",
             "[&_.task-item]:my-2",
             // layout
-            "[&_div]:flex-auto [&_>_div_>_p]:m-0",
-            "[&_label]:flex [&_label]:pt-1.5 [&_label]:select-none [&_label]:mr-2.5",
+            "[&_div]:flex-auto [&_>_div_>_p]:m-0 [&_>_div_>_p]:cursor-text",
+            "[&_label]:flex [&_label]:pt-[5px] [&_label]:select-none [&_label]:mr-2.5",
             // input
-            "[&_input]:appearance-none [&_input]:cursor-pointer [&_input]:h-4 [&_input]:w-4 [&_input]:bg-gray-100 [&_input]:border [&_input]:border-gray-600 [&_input]:rounded-sm",
+            "[&_input]:appearance-none [&_input]:cursor-pointer [&_input]:h-5 [&_input]:w-5 [&_input]:bg-gray-100 [&_input]:border [&_input]:border-gray-600 [&_input]:rounded",
             // checkmark
-            "[&_input]:after:hidden [&_input]:after:-rotate-6 [&_input]:after:text-white [&_input]:after:h-3.5 [&_input]:after:w-3.5",
+            "[&_input]:after:hidden [&_input]:after:rotate-[-6deg] [&_input]:after:text-white [&_input]:after:h-[18px] [&_input]:after:w-[18px]",
             `[&_input]:after:bg-checkbox [&_input]:after:bg-contain [&_input]:after:bg-no-repeat [&_input]:after:bg-center`,
             // psuedo
             "[&_input:checked]:bg-pink-500 [&_input:checked]:after:block",

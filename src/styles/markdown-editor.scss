@@ -6,7 +6,7 @@
       text-decoration: line-through;
     }
 
-    /* rest text-decoration */
+    /* reset text-decoration */
     &[data-checked="false"] > div > p {
       display: inline-block;
     }
