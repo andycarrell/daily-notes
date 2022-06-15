@@ -4,6 +4,7 @@ import useNoteQuery from "../api/useNoteQuery";
 import useNoteMutation from "../api/useNoteMutation";
 
 import useIdleCallback from "../utilities/useIdleCallback";
+import { useDebounceFunction } from "../utilities/useDebounce";
 
 import SavingIndicator from "./SavingIndicator";
 import MarkdownEditor from "./MarkdownEditor";
@@ -13,7 +14,11 @@ const Note = ({ id }) => {
   const { isError, isLoading, isFetching, data } = useNoteQuery(id);
   const { item: content } = data ?? {};
 
-  const saveNoteDebounced = useIdleCallback(mutate, { timeout: 2000 });
+  // debounce for typing, idle callback so this isn't blocking
+  const saveNote = useDebounceFunction(
+    useIdleCallback(mutate, { timeout: 2000 }),
+    300
+  );
 
   if (isError || isLoading) {
     return null;
@@ -25,7 +30,7 @@ const Note = ({ id }) => {
         key={id}
         content={content ?? ""}
         isEditable={!isFetching}
-        onChange={saveNoteDebounced}
+        onChange={saveNote}
       />
       <SavingIndicator isSaving={isSaving}>
         <p className="absolute top-1 right-1.5 text-xs text-gray-500 font-semibold uppercase">
