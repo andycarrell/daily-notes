@@ -11,6 +11,7 @@ import { Layout } from "./layout";
 import { IconGrayButton } from "./Button";
 import DeferUntilViewport from "./DeferUntilViewport";
 
+const feedKeyFrom = (key) => `feed-${key}`;
 const nanoid = customAlphabet("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6);
 
 const FeedItem = ({ id }) => (
@@ -18,7 +19,7 @@ const FeedItem = ({ id }) => (
     <h2 className="self-end text-sm text-gray-500 font-semibold my-2 mr-1">
       {id}
     </h2>
-    <Note id={`feed-${id}`} />
+    <Note id={feedKeyFrom(id)} />
   </div>
 );
 
@@ -63,8 +64,6 @@ const Feed = () => {
             )}
           </div>
         ))}
-        {/** Temporarily here until content can be migrated */}
-        <Note id="feed" className="py-6" />
       </div>
     </Layout>
   );
