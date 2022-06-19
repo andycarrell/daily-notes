@@ -10,6 +10,13 @@ export const useUpdateNoteQuery = (key) => {
   return (item) => queryClient.setQueryData(["note", key], item);
 };
 
+export const useNotesQuery = (keys, options = {}) =>
+  useQuery(
+    ["notes", keys],
+    () => Promise.all(keys.map((key) => getItem(keyFrom(key)))),
+    options
+  );
+
 const useNoteQuery = (key) =>
   useQuery(["note", key], () => getItem(keyFrom(key)));
 
