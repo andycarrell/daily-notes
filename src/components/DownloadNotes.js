@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import {
   ClipboardCopyIcon,
   DocumentDownloadIcon,
@@ -14,27 +14,28 @@ import { IconGrayButton, IconGrayLink } from "./Button";
 // todo: make ids / keys a prop
 const feedKeyFrom = (key) => `feed-${key}`;
 
+const stringifyAndEncode = (data) => {
+  const encoded = encodeURIComponent(JSON.stringify(data));
+  return `data:text/json;charset=utf-8,${encoded}`;
+};
+
 const DownloadNotes = () => {
-  // todo: add state for refresh - reset to idle every 5 minutes?
   const [state, setState] = useState("idle");
   const { data: feed } = useFeedQuery();
   const { data, isFetching } = useNotesQuery(
     (feed?.item ?? []).map(feedKeyFrom),
     {
-      enabled: state === "load",
       suspense: false,
+      enabled: state === "load",
+      select: stringifyAndEncode,
+      refetchInterval: 3 * 60 * 1000,
     }
   );
-
-  const jsonString = useMemo(() => {
-    const encoded = encodeURIComponent(JSON.stringify(data));
-    return `data:text/json;charset=utf-8,${encoded}`;
-  }, [data]);
 
   if (data) {
     return (
       <IconGrayLink
-        href={jsonString}
+        href={data}
         aria-label="Download notes"
         // todo: add date to name
         download="daily-notes.json"
