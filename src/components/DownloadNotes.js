@@ -9,10 +9,16 @@ import {
 import useFeedQuery from "../api/useFeedQuery";
 import { useNotesQuery } from "../api/useNoteQuery";
 
+import {
+  rawFromISOString,
+  startOfUTCTodayToISOString,
+} from "../utilities/dates";
+
 import { IconGrayButton, IconGrayLink } from "./Button";
 
 // todo: make ids / keys a prop
 const feedKeyFrom = (key) => `feed-${key}`;
+const getStartOfTodayRaw = () => rawFromISOString(startOfUTCTodayToISOString());
 
 const stringifyAndEncode = (data) => {
   const encoded = encodeURIComponent(JSON.stringify(data));
@@ -37,8 +43,7 @@ const DownloadNotes = () => {
       <IconGrayLink
         href={data}
         aria-label="Download notes"
-        // todo: add date to name
-        download="daily-notes.json"
+        download={`daily-notes-${getStartOfTodayRaw()}.json`}
       >
         <DocumentDownloadIcon />
       </IconGrayLink>

@@ -4,30 +4,16 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
 import useDateReducer from "../utilities/useDateReducer";
 import useSearchParam from "../utilities/useSearchParam";
+import {
+  rawToISOString,
+  rawFromISOString,
+  displayFromISOString,
+  startOfUTCTodayToISOString,
+} from "../utilities/dates";
 
 import Note from "./Note";
 import { Layout, Card } from "./layout";
 import { IconGrayButton } from "./Button";
-
-const START_OF_DAY_ISO = "T00:00:00.000Z";
-
-const startOfUTCTodayToISOString = () => {
-  const pad = (p) =>
-    ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09"][p] ?? p;
-
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-
-  return `${year}-${pad(month)}-${pad(day)}${START_OF_DAY_ISO}`;
-};
-
-const displayFromISOString = (date) => {
-  // Strip the 'zero UTC offset', so notes appear on the same 'day' wherever & whenever they're viewed
-  const stripZOffset = date.slice(0, -1);
-  return new Date(stripZOffset).toDateString();
-};
 
 const DailyNotes = () => {
   const [getSearchParam, updateSearchParam, deleteSearchParam] =
@@ -36,7 +22,7 @@ const DailyNotes = () => {
   const [date, dispatch] = useDateReducer(() => {
     const raw = getSearchParam();
     if (raw) {
-      return `${raw}${START_OF_DAY_ISO}`;
+      return rawToISOString(raw);
     }
     return startOfUTCTodayToISOString();
   });
@@ -46,8 +32,7 @@ const DailyNotes = () => {
   }, [date]);
 
   useEffect(() => {
-    const [rawDate] = date.split(START_OF_DAY_ISO);
-    updateSearchParam(rawDate);
+    updateSearchParam(rawFromISOString(date));
   }, [date]);
 
   // Remove search param on unmount
