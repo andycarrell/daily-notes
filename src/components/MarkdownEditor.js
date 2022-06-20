@@ -23,7 +23,7 @@ import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import { useEditor, EditorContent } from "@tiptap/react";
 
 const getEditorClass = (c = "") =>
-  `markdown-editor prose prose-pink selection:bg-pink-300 selection:text-pink-900 text-gray-100 caret-pink-600 min-h-[16rem] max-w-full focus:outline-none p-4 ${c}`.trim();
+  `markdown-editor prose selection:bg-pink-400 selection:text-pink-900 text-gray-100 caret-pink-600 min-h-[16rem] max-w-full focus:outline-none p-4 ${c}`.trim();
 
 const enabledOptions = {
   editable: true,
@@ -41,7 +41,7 @@ const disabledOptions = {
   editorProps: {
     attributes: {
       class: getEditorClass(
-        "[&_.heading]:text-white/70 [&_.bold]:text-white/70 [&_p]:text-white/70"
+        "[&_.heading]:opacity-70 [&_.bold]:opacity-70 [&_.task-item_label]:opacity-70 [&_p]:opacity-70"
       ),
     },
   },
@@ -81,7 +81,12 @@ const useMarkdownEditor = ({ isEditable, ...options }) => {
       }),
       ListItem.configure({
         HTMLAttributes: {
-          class: "list-item [&_>_*:first-child]:mt-3 [&_>_*:last-child]:mb-3",
+          class: [
+            "list-item",
+            "[&_>_*]:mt-2 [&_>_*]:mb-2 [&_>_*:first-child]:mt-3 [&_>_*:last-child]:mb-3",
+            // nested
+            "[&_.list-item_>_*:first-child]:mt-1 [&_.list-item_>_*:first-child]:mb-1",
+          ].join(" "),
         },
       }),
       BulletList.configure({
@@ -115,7 +120,7 @@ const useMarkdownEditor = ({ isEditable, ...options }) => {
             "[&_.task-item]:my-2",
             // layout
             "[&_div]:flex-auto [&_>_div_>_p]:m-0 [&_>_div_>_p]:cursor-text",
-            "[&_label]:flex [&_label]:pt-[5px] [&_label]:select-none [&_label]:mr-2.5",
+            "[&_label]:flex [&_label]:pt-1 [&_label]:select-none [&_label]:mr-2.5",
             // input
             "[&_input]:appearance-none [&_input]:cursor-pointer [&_input]:h-5 [&_input]:w-5 [&_input]:bg-gray-100 [&_input]:border [&_input]:border-gray-600 [&_input]:rounded",
             // checkmark
@@ -129,7 +134,10 @@ const useMarkdownEditor = ({ isEditable, ...options }) => {
       }),
       Link.configure({
         HTMLAttributes: {
-          class: "cursor-pointer font-semibold hover:text-pink-400",
+          class: [
+            "cursor-pointer font-semibold text-pink-600 hover:text-pink-400",
+            "[&_strong]:text-pink-600 [&_strong]:hover:text-pink-400",
+          ].join(" "),
         },
       }),
     ],
