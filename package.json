@@ -10,13 +10,14 @@
     "url": "ssh://git@github.com:andycarrell/daily-notes.git"
   },
   "scripts": {
-    "build:js": "esbuild src/index.js --bundle --minify --loader:.js=jsx --outfile=dist/bundle.js",
+    "build:js": "esbuild src/index.js --bundle --minify --loader:.js=jsx --loader:.ts=tsx --outfile=dist/bundle.js",
     "build:css": "postcss src/styles/index.scss -o dist/index.css",
     "build": "npm run prime && npm run build:js && npm run build:css",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prime": "copyfiles public/* dist --up=1",
-    "start": "npm run prime && concurrently \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\""
+    "start": "npm run prime && concurrently \"npm run types:check -- --watch\" \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\"",
+    "types:check": "tsc"
   },
   "dependencies": {
     "@heroicons/react": "1.0.5",
@@ -55,12 +56,15 @@
     "tailwindcss": "3.1.2"
   },
   "devDependencies": {
+    "@types/react": "18.0.14",
+    "@types/react-dom": "18.0.5",
     "concurrently": "7.0.0",
     "copyfiles": "2.4.1",
     "postcss-import": "14.0.2",
     "postcss-nested": "5.0.6",
     "postcss-scss": "4.0.4",
-    "prettier": "2.5.1"
+    "prettier": "2.5.1",
+    "typescript": "4.7.4"
   },
   "overrides": {
     "react": "18.1.0",
