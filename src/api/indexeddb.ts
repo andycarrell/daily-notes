@@ -13,5 +13,5 @@ export const getItem = async <Item>(key: string) => {
 
 export const setItem = async <Item>(key: string, item: Item) => {
   await localforage.setItem(key, item);
-  return getItem<Item | null>(key);
+  return getItem<Item>(key);
 };
