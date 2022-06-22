@@ -9,7 +9,11 @@ import { useDebounceFunction } from "../utilities/useDebounce";
 import SavingIndicator from "./SavingIndicator";
 import MarkdownEditor from "./MarkdownEditor";
 
-const Note = ({ id }) => {
+interface Props {
+  id: string;
+}
+
+const Note = ({ id }: Props) => {
   const { mutate, isLoading: isSaving } = useNoteMutation(id);
   const { isError, isLoading, isFetching, data } = useNoteQuery(id);
   const { item: content } = data ?? {};

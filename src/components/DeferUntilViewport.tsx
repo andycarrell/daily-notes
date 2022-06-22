@@ -1,11 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const DeferUntilViewport = ({ children }) => {
+import { ReactElement } from "react";
+
+interface Props {
+  children: ReactElement;
+}
+
+const DeferUntilViewport = ({ children }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef();
 
   useEffect(() => {
-    const handleIntersect = (entries) => {
+    const handle: IntersectionObserverCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
@@ -13,7 +19,7 @@ const DeferUntilViewport = ({ children }) => {
       });
     };
 
-    const observer = new IntersectionObserver(handleIntersect, {
+    const observer = new IntersectionObserver(handle, {
       root: null,
       rootMargin: "0px",
       threshold: 0.05,

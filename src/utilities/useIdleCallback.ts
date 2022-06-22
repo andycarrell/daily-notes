@@ -1,6 +1,9 @@
 import { useRef, useCallback, useLayoutEffect } from "react";
 
-const idle = (fn, { timeout }) => {
+type Fn = Parameters<typeof requestIdleCallback>[0];
+type Options = Parameters<typeof requestIdleCallback>[1];
+
+const idle = (fn: Fn, { timeout }: Options) => {
   if ("requestIdleCallback" in window) {
     const id = requestIdleCallback(fn, { timeout });
     return () => {
@@ -14,7 +17,10 @@ const idle = (fn, { timeout }) => {
   };
 };
 
-const useIdleCallback = (fn, { timeout }) => {
+const useIdleCallback = <A = unknown, R = void>(
+  fn: (...a: A[]) => R,
+  { timeout }: Options
+) => {
   const cancel = useRef(null);
   const callback = useRef(fn);
 
@@ -22,7 +28,7 @@ const useIdleCallback = (fn, { timeout }) => {
     callback.current = fn;
   }, [fn]);
 
-  return useCallback(
+  return useCallback<(...a: A[]) => void>(
     (...args) => {
       cancel.current?.();
       cancel.current = idle(() => callback.current(...args), { timeout });
