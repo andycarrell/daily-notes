@@ -22,6 +22,9 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import { useEditor, EditorContent } from "@tiptap/react";
 
+import type { JSONContent } from "@tiptap/react";
+import type { NoteContent } from "../api/useNoteQuery";
+
 const getEditorClass = (c = "") =>
   `markdown-editor prose selection:bg-pink-400 selection:text-pink-900 text-gray-100 caret-pink-600 min-h-[16rem] max-w-full focus:outline-none p-4 ${c}`.trim();
 
@@ -47,7 +50,10 @@ const disabledOptions = {
   },
 };
 
-const useMarkdownEditor = ({ isEditable, ...options }) => {
+const useMarkdownEditor = ({
+  isEditable,
+  ...options
+}: Parameters<typeof useEditor>[0] & { isEditable: boolean }) => {
   const editor = useEditor({
     ...enabledOptions,
     ...options,
@@ -152,11 +158,17 @@ const useMarkdownEditor = ({ isEditable, ...options }) => {
   return editor;
 };
 
+interface Props {
+  content?: NoteContent | string;
+  isEditable?: boolean;
+  onChange?: (j: JSONContent) => void;
+}
+
 const MarkdownEditor = ({
   content = "",
   isEditable = true,
   onChange = () => {},
-}) => {
+}: Props) => {
   const [hasFocus, setHasFocus] = useState(false);
 
   const editor = useMarkdownEditor({
@@ -168,7 +180,7 @@ const MarkdownEditor = ({
   });
 
   return (
-    <div spellcheck={String(hasFocus)}>
+    <div spellCheck={hasFocus}>
       <EditorContent editor={editor} />
     </div>
   );

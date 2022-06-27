@@ -6,7 +6,10 @@ import {
   useLayoutEffect,
 } from "react";
 
-export const useDebounceFunction = (fn, delay) => {
+export const useDebounceFunction = <A = unknown, R = void>(
+  fn: (...args: A[]) => R,
+  delay: number
+) => {
   const id = useRef(null);
   const cb = useRef(fn);
 
@@ -14,7 +17,7 @@ export const useDebounceFunction = (fn, delay) => {
     cb.current = fn;
   }, [fn]);
 
-  return useCallback(
+  return useCallback<(...args: A[]) => void>(
     (...args) => {
       clearTimeout(id.current);
       id.current = setTimeout(() => cb.current(...args), delay);
@@ -23,7 +26,7 @@ export const useDebounceFunction = (fn, delay) => {
   );
 };
 
-const useDebounce = (value, delay) => {
+const useDebounce = <Value>(value: Value, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {

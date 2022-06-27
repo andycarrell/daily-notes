@@ -1,6 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 
-const SavingIndicator = ({ children, isSaving = false }) => {
+import type { ReactNode } from "react";
+
+interface Props {
+  children: ReactNode;
+  isSaving?: boolean;
+}
+
+const SavingIndicator = ({ children, isSaving = false }: Props) => {
   const [debounced, setDebounced] = useState(isSaving);
   const id = useRef(null);
 

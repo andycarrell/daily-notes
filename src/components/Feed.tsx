@@ -11,10 +11,10 @@ import { Layout } from "./layout";
 import { IconGrayButton } from "./Button";
 import DeferUntilViewport from "./DeferUntilViewport";
 
-const feedKeyFrom = (key) => `feed-${key}`;
+const feedKeyFrom = (key: string) => `feed-${key}`;
 const nanoid = customAlphabet("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6);
 
-const FeedItem = ({ id }) => (
+const FeedItem = ({ id }: { id: string }) => (
   <div className="flex flex-col-reverse pt-6">
     <h2 className="self-end text-sm text-gray-500 font-semibold my-2 mr-1">
       {id}

@@ -1,12 +1,15 @@
 import { useReducer } from "react";
 
-const changeDateByDays = (delta, date) => {
+type State = string;
+type Actions = "increment-date" | "decrement-date" | unknown;
+
+const changeDateByDays = (delta: number, date: string) => {
   const copy = new Date(date);
   copy.setDate(copy.getDate() + delta);
   return copy.toISOString();
 };
 
-const reducer = (state, action) => {
+const reducer = (state: State, action: Actions) => {
   if (action === "increment-date") {
     return changeDateByDays(1, state);
   }
@@ -18,7 +21,7 @@ const reducer = (state, action) => {
   throw new Error(`Unknown action ${action} for useDateReducer`);
 };
 
-const useDateReducer = (initializer) =>
+const useDateReducer = (initializer: () => State) =>
   useReducer(reducer, undefined, initializer);
 
 export default useDateReducer;

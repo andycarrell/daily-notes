@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/solid";
 
 import useFeedQuery from "../api/useFeedQuery";
-import { useNotesQuery } from "../api/useNoteQuery";
+import useNotesQuery from "../api/useNotesQuery";
 
 import {
   rawFromISOString,
@@ -17,16 +17,15 @@ import {
 import { IconGrayButton, IconGrayLink } from "./Button";
 
 // todo: make ids / keys a prop
-const feedKeyFrom = (key) => `feed-${key}`;
+const feedKeyFrom = (key: string | number) => `feed-${key}`;
 const getStartOfTodayRaw = () => rawFromISOString(startOfUTCTodayToISOString());
-
-const stringifyAndEncode = (data) => {
+const stringifyAndEncode = (data: unknown) => {
   const encoded = encodeURIComponent(JSON.stringify(data));
   return `data:text/json;charset=utf-8,${encoded}`;
 };
 
 const DownloadNotes = () => {
-  const [state, setState] = useState("idle");
+  const [state, setState] = useState<"idle" | "load">("idle");
   const { data: feed } = useFeedQuery();
   const { data, isFetching } = useNotesQuery(
     (feed?.item ?? []).map(feedKeyFrom),
