@@ -11,7 +11,9 @@ const queryFn = (key: string) => getItem<FeedItem>(key);
 export const useUpdateFeedQuery = () => {
   const queryClient = useQueryClient();
 
-  return (item: FeedItem) => queryClient.setQueryData(key, item);
+  return (data: Awaited<ReturnType<typeof queryFn>>) => {
+    queryClient.setQueryData(key, data);
+  };
 };
 
 const useFeedQuery = () => useQuery(key, () => queryFn(key));

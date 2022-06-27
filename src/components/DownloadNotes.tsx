@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/solid";
 
 import useFeedQuery from "../api/useFeedQuery";
-import { useNotesQuery } from "../api/useNoteQuery";
+import useNotesQuery from "../api/useNotesQuery";
 
 import {
   rawFromISOString,
