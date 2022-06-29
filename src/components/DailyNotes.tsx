@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 

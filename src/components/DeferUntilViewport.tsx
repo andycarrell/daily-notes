@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-
-import { ReactElement } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { ReactElement } from "react";
 
 interface Props {
   children: ReactElement;

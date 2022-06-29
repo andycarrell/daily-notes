@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Bold from "@tiptap/extension-bold";
 import Code from "@tiptap/extension-code";
 import Link from "@tiptap/extension-link";

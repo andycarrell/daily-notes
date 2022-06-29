@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import { Suspense, useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ClipboardListIcon, DocumentTextIcon } from "@heroicons/react/solid";
 

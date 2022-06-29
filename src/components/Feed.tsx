@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { customAlphabet } from "nanoid";
 
 import { ViewGridAddIcon } from "@heroicons/react/solid";

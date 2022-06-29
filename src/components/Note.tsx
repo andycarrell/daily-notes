@@ -1,5 +1,3 @@
-import React from "react";
-
 import useNoteQuery from "../api/useNoteQuery";
 import useNoteMutation from "../api/useNoteMutation";
 
