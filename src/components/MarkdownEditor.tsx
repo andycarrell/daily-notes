@@ -68,7 +68,11 @@ const useMarkdownEditor = ({
       CodeBlock,
       HardBreak,
       Underline,
-      HorizontalRule,
+      HorizontalRule.configure({
+        HTMLAttributes: {
+          class: "border-gray-400/70 my-8",
+        },
+      }),
       Bold.configure({
         HTMLAttributes: {
           class: "bold font-bold text-gray-100",
