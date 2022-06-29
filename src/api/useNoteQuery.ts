@@ -11,8 +11,7 @@ export const keyFrom = (k: string) => `note-${k}`;
 
 const queryFn = (key: string) => getItem<NoteContent>(keyFrom(key));
 
-export const useUpdateNoteQuery = (key: string) =>
-  useSetQueryData<ReturnType<typeof queryFn>>(key);
+export const useUpdateNoteQuery = useSetQueryData<ReturnType<typeof queryFn>>;
 
 const useNoteQuery = (key: string) =>
   useQuery(["note", key], () => queryFn(key));
