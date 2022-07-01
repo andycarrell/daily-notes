@@ -3,13 +3,13 @@ import { customAlphabet } from "nanoid";
 
 import { ViewGridAddIcon } from "@heroicons/react/solid";
 
-import useFeedQuery from "../api/useFeedQuery";
-import useFeedMutation from "../api/useFeedMutation";
+import { useFeedQuery } from "../api/useFeedQuery";
+import { useFeedMutation } from "../api/useFeedMutation";
 
-import Note from "./Note";
+import { Note } from "./Note";
 import { Layout } from "./layout";
 import { IconGrayButton } from "./Button";
-import DeferUntilViewport from "./DeferUntilViewport";
+import { DeferUntilViewport } from "./DeferUntilViewport";
 
 const feedKeyFrom = (key: string) => `feed-${key}`;
 const nanoid = customAlphabet("1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6);
@@ -23,7 +23,7 @@ const FeedItem = ({ id }: { id: string }) => (
   </div>
 );
 
-const Feed = () => {
+export const Feed = () => {
   const { isError, data } = useFeedQuery();
   const { mutate } = useFeedMutation();
   const ids = data?.item ?? [];
@@ -68,5 +68,3 @@ const Feed = () => {
     </Layout>
   );
 };
-
-export default Feed;

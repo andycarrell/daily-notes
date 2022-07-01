@@ -17,7 +17,7 @@ const idle = (fn: Fn, { timeout }: Options) => {
   };
 };
 
-const useIdleCallback = <P = unknown, R = void>(
+export const useIdleCallback = <P = unknown, R = void>(
   fn: (...p: P[]) => R,
   { timeout }: Options
 ) => {
@@ -36,5 +36,3 @@ const useIdleCallback = <P = unknown, R = void>(
     [timeout]
   );
 };
-
-export default useIdleCallback;

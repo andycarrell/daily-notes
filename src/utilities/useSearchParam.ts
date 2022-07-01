@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-const useSearchParam = (param: string) =>
+export const useSearchParam = (param: string) =>
   useMemo(() => {
     const get = () => {
       const url = new URL(window.location.href);
@@ -22,5 +22,3 @@ const useSearchParam = (param: string) =>
 
     return [get, set, _delete] as const;
   }, [param]);
-
-export default useSearchParam;

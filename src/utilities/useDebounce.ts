@@ -39,5 +39,3 @@ const useDebounce = <Value>(value: Value, delay: number) => {
 
   return debouncedValue;
 };
-
-export default useDebounce;

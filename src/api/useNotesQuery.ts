@@ -12,7 +12,7 @@ const queryFn = (keys: string[]) =>
     }))
   );
 
-const useNotesQuery = <TData = ReturnType<typeof queryFn>>(
+export const useNotesQuery = <TData = ReturnType<typeof queryFn>>(
   keys: string[],
   options: UseQueryOptions<ReturnType<typeof queryFn>, unknown, TData> = {}
 ) =>
@@ -21,5 +21,3 @@ const useNotesQuery = <TData = ReturnType<typeof queryFn>>(
     () => queryFn(keys),
     options
   );
-
-export default useNotesQuery;

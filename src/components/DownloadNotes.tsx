@@ -6,8 +6,8 @@ import {
   RefreshIcon,
 } from "@heroicons/react/solid";
 
-import useFeedQuery from "../api/useFeedQuery";
-import useNotesQuery from "../api/useNotesQuery";
+import { useFeedQuery } from "../api/useFeedQuery";
+import { useNotesQuery } from "../api/useNotesQuery";
 
 import {
   rawFromISOString,
@@ -24,7 +24,7 @@ const stringifyAndEncode = (data: unknown) => {
   return `data:text/json;charset=utf-8,${encoded}`;
 };
 
-const DownloadNotes = () => {
+export const DownloadNotes = () => {
   const [state, setState] = useState<"idle" | "load">("idle");
   const { data: feed } = useFeedQuery();
   const { data, isFetching } = useNotesQuery(
@@ -74,5 +74,3 @@ const DownloadNotes = () => {
     </IconGrayButton>
   );
 };
-
-export default DownloadNotes;

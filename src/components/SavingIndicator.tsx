@@ -6,7 +6,7 @@ interface Props {
   isSaving?: boolean;
 }
 
-const SavingIndicator = ({ children, isSaving = false }: Props) => {
+export const SavingIndicator = ({ children, isSaving = false }: Props) => {
   const [debounced, setDebounced] = useState(isSaving);
   const id = useRef(null);
 
@@ -29,5 +29,3 @@ const SavingIndicator = ({ children, isSaving = false }: Props) => {
     </div>
   );
 };
-
-export default SavingIndicator;

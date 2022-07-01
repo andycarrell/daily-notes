@@ -2,11 +2,11 @@ import { Suspense, useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ClipboardListIcon, DocumentTextIcon } from "@heroicons/react/solid";
 
-import Feed from "./components/Feed";
+import { Feed } from "./components/Feed";
 import { Page } from "./components/layout";
-import DailyNotes from "./components/DailyNotes";
+import { DailyNotes } from "./components/DailyNotes";
 import { IconGrayButton } from "./components/Button";
-import DownloadNotes from "./components/DownloadNotes";
+import { DownloadNotes } from "./components/DownloadNotes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,7 +16,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const App = () => {
+export const App = () => {
   const [variant, setVariant] = useState("notes");
 
   return (
@@ -71,5 +71,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;

@@ -21,7 +21,5 @@ const reducer = (state: State, action: Actions) => {
   throw new Error(`Unknown action ${action} for useDateReducer`);
 };
 
-const useDateReducer = (initializer: () => State) =>
+export const useDateReducer = (initializer: () => State) =>
   useReducer(reducer, undefined, initializer);
-
-export default useDateReducer;

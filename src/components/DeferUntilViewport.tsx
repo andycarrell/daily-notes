@@ -5,7 +5,7 @@ interface Props {
   children: ReactElement;
 }
 
-const DeferUntilViewport = ({ children }: Props) => {
+export const DeferUntilViewport = ({ children }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef();
 
@@ -34,5 +34,3 @@ const DeferUntilViewport = ({ children }: Props) => {
   // Observe placeholder div until in viewport
   return <div ref={observerRef} />;
 };
-
-export default DeferUntilViewport;

@@ -2,8 +2,8 @@ import { Suspense, useEffect } from "react";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 
-import useDateReducer from "../utilities/useDateReducer";
-import useSearchParam from "../utilities/useSearchParam";
+import { useDateReducer } from "../utilities/useDateReducer";
+import { useSearchParam } from "../utilities/useSearchParam";
 import {
   rawToISOString,
   rawFromISOString,
@@ -11,11 +11,11 @@ import {
   startOfUTCTodayToISOString,
 } from "../utilities/dates";
 
-import Note from "./Note";
+import { Note } from "./Note";
 import { Layout, Card } from "./layout";
 import { IconGrayButton } from "./Button";
 
-const DailyNotes = () => {
+export const DailyNotes = () => {
   const [getSearchParam, updateSearchParam, deleteSearchParam] =
     useSearchParam("d");
 
@@ -69,5 +69,3 @@ const DailyNotes = () => {
     </Layout>
   );
 };
-
-export default DailyNotes;

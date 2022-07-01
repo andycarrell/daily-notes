@@ -7,9 +7,7 @@ import { useUpdateNoteQuery, keyFrom } from "./useNoteQuery";
 const mutationFn = (key: string, note: JSONContent) =>
   setItem(keyFrom(key), note);
 
-const useNoteMutation = (key: string) =>
+export const useNoteMutation = (key: string) =>
   useMutation((note: JSONContent) => mutationFn(key, note), {
     onSuccess: useUpdateNoteQuery(key),
   });
-
-export default useNoteMutation;

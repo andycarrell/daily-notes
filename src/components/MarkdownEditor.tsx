@@ -168,7 +168,7 @@ interface Props {
   onChange?: (j: JSONContent) => void;
 }
 
-const MarkdownEditor = ({
+export const MarkdownEditor = ({
   content = "",
   isEditable = true,
   onChange = () => {},
@@ -189,5 +189,3 @@ const MarkdownEditor = ({
     </div>
   );
 };
-
-export default MarkdownEditor;

@@ -27,5 +27,3 @@ export const IconGrayLink = (props: Omit<LinkProps, "className">) => (
 export const IconGrayButton = (props: Omit<ButtonProps, "className">) => (
   <Button className={iconGrayClassName()} {...props} />
 );
-
-export default Button;

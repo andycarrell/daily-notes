@@ -1,17 +1,17 @@
-import useNoteQuery from "../api/useNoteQuery";
-import useNoteMutation from "../api/useNoteMutation";
+import { useNoteQuery } from "../api/useNoteQuery";
+import { useNoteMutation } from "../api/useNoteMutation";
 
-import useIdleCallback from "../utilities/useIdleCallback";
+import { useIdleCallback } from "../utilities/useIdleCallback";
 import { useDebounceFunction } from "../utilities/useDebounce";
 
-import SavingIndicator from "./SavingIndicator";
-import MarkdownEditor from "./MarkdownEditor";
+import { SavingIndicator } from "./SavingIndicator";
+import { MarkdownEditor } from "./MarkdownEditor";
 
 interface Props {
   id: string;
 }
 
-const Note = ({ id }: Props) => {
+export const Note = ({ id }: Props) => {
   const { mutate, isLoading: isSaving } = useNoteMutation(id);
   const { isError, isLoading, isFetching, data } = useNoteQuery(id);
   const { item: content } = data ?? {};
@@ -42,5 +42,3 @@ const Note = ({ id }: Props) => {
     </div>
   );
 };
-
-export default Note;
