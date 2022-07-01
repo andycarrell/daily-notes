@@ -17,8 +17,8 @@ const idle = (fn: Fn, { timeout }: Options) => {
   };
 };
 
-const useIdleCallback = <A = unknown, R = void>(
-  fn: (...a: A[]) => R,
+const useIdleCallback = <P = unknown, R = void>(
+  fn: (...p: P[]) => R,
   { timeout }: Options
 ) => {
   const cancel = useRef(null);
@@ -28,7 +28,7 @@ const useIdleCallback = <A = unknown, R = void>(
     callback.current = fn;
   }, [fn]);
 
-  return useCallback<(...a: A[]) => void>(
+  return useCallback<(...p: P[]) => void>(
     (...args) => {
       cancel.current?.();
       cancel.current = idle(() => callback.current(...args), { timeout });
