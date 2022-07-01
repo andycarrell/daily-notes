@@ -169,9 +169,9 @@ interface Props {
 }
 
 export const MarkdownEditor = ({
+  onChange,
   content = "",
   isEditable = true,
-  onChange = () => {},
 }: Props) => {
   const [hasFocus, setHasFocus] = useState(false);
 
@@ -180,7 +180,7 @@ export const MarkdownEditor = ({
     isEditable,
     onBlur: () => setHasFocus(false),
     onFocus: () => setHasFocus(true),
-    onUpdate: ({ editor: e }) => onChange(e.getJSON()),
+    onUpdate: ({ editor: e }) => onChange?.(e.getJSON()),
   });
 
   return (

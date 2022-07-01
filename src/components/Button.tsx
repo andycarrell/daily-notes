@@ -1,9 +1,9 @@
 import type { ComponentProps } from "react";
 
-interface ButtonProps extends ComponentProps<"button"> {}
-interface LinkProps extends ComponentProps<"a"> {}
+type ButtonProps = ComponentProps<"button">;
+type LinkProps = ComponentProps<"a">;
 
-const buttonClassName = (c: string = "") =>
+const buttonClassName = (c = "") =>
   `cursor-pointer flex justify-center items-center rounded-md transition-colors duration-200 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70 ${c}`.trim();
 const iconGrayClassName = () =>
   "text-gray-400 hover:text-gray-300 focus-visible:ring-1 focus-visible:ring-gray-300 [&_svg]:h-8 [&_svg]:w-8";
