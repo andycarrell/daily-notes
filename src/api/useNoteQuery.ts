@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import type { JSONContent } from "@tiptap/react";
 
 import { getItem } from "./indexeddb";
-import {useSetQueryData} from "./useSetQueryData";
+import { useSetQueryData } from "./useSetQueryData";
 
 export type NoteContent = JSONContent | JSONContent[] | null;
 
@@ -15,5 +15,3 @@ export const useUpdateNoteQuery = useSetQueryData<ReturnType<typeof queryFn>>;
 
 export const useNoteQuery = (key: string) =>
   useQuery(["note", key], () => queryFn(key));
-
-
