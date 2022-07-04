@@ -33,10 +33,10 @@ export const DailyNotes = () => {
 
   useEffect(() => {
     updateSearchParam(rawFromISOString(date));
-  }, [date]);
+  }, [date, updateSearchParam]);
 
   // Remove search param on unmount
-  useEffect(() => deleteSearchParam, []);
+  useEffect(() => deleteSearchParam, [deleteSearchParam]);
 
   return (
     <Layout className="max-w-2xl">
