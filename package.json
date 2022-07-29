@@ -10,7 +10,7 @@
     "url": "ssh://git@github.com:andycarrell/daily-notes.git"
   },
   "scripts": {
-    "build:js": "esbuild src/index.tsx --bundle --minify --inject:./.esbuild/react-shim.js --outfile=dist/bundle.js",
+    "build:js": "esbuild src/index.tsx --bundle --minify --outfile=dist/bundle.js",
     "build:css": "postcss src/styles/index.scss -o dist/index.css",
     "build": "npm run prime && npm run build:js && npm run build:css",
     "format": "prettier --write .",
@@ -47,7 +47,7 @@
     "@tiptap/extension-underline": "2.0.0-beta.25",
     "@tiptap/react": "2.0.0-beta.114",
     "autoprefixer": "10.4.7",
-    "esbuild": "0.14.49",
+    "esbuild": "0.14.51",
     "localforage": "1.10.0",
     "nanoid": "4.0.0",
     "postcss": "8.4.14",
