@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { useQueryClient } from "react-query";
-import type { QueryKey } from "react-query";
+import { useQueryClient } from "@tanstack/react-query";
+import type { QueryKey } from "@tanstack/react-query";
 
 type Unwrap<T> = T extends Promise<infer U> ? U : T;
 

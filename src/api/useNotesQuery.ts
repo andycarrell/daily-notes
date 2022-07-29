@@ -1,5 +1,5 @@
-import { useQuery } from "react-query";
-import type { UseQueryOptions } from "react-query";
+import { useQuery } from "@tanstack/react-query";
+import type { UseQueryOptions } from "@tanstack/react-query";
 
 import { getItem } from "./indexeddb";
 import { keyFrom } from "./useNoteQuery";
