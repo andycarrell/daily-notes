@@ -6,7 +6,6 @@ import { Feed } from "./components/Feed";
 import { Page } from "./components/layout";
 import { DailyNotes } from "./components/DailyNotes";
 import { IconGrayButton } from "./components/Button";
-import { DownloadNotes } from "./components/DownloadNotes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,7 +16,7 @@ const queryClient = new QueryClient({
 });
 
 export const App = () => {
-  const [variant, setVariant] = useState("notes");
+  const [variant, setVariant] = useState<"notes" | "feed">("notes");
 
   return (
     <div className="antialiased">
@@ -25,7 +24,7 @@ export const App = () => {
         <Page>
           <Suspense fallback={null}>
             <div className="bg-gray-800 lg:bg-transparent w-full sm:sticky inset-0 z-10 flex flex-row justify-end p-4 space-x-2">
-              {variant === "feed" ? <DownloadNotes /> : null}
+              <div id="header-portal" />
               <div role="tablist">
                 {variant === "feed" ? (
                   <IconGrayButton

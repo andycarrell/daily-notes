@@ -9,6 +9,8 @@ import { useFeedMutation } from "../api/useFeedMutation";
 import { Note } from "./Note";
 import { Layout } from "./layout";
 import { IconGrayButton } from "./Button";
+import { DownloadNotes } from "./DownloadNotes";
+import { RenderIntoPortal } from "./RenderIntoPortal";
 import { DeferUntilViewport } from "./DeferUntilViewport";
 
 const feedKeyFrom = (key: string) => `feed-${key}`;
@@ -38,6 +40,9 @@ export const Feed = () => {
 
   return (
     <Layout className="max-w-4xl pt-0 md:pt-12">
+      <RenderIntoPortal id="header-portal">
+        <DownloadNotes />
+      </RenderIntoPortal>
       <div className="flex flex-row w-full justify-between items-center px-4 mb-2 sm:mb-5 space-x-4">
         <h1 className="text-xl sm:text-3xl font-serif font-bold text-gray-200 sm:text-gray-300">
           Feed
