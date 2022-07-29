@@ -9,9 +9,11 @@ export type NoteContent = JSONContent | JSONContent[] | null;
 
 export const keyFrom = (k: string) => `note-${k}`;
 
+const queryKey = (key: string) => ["note", key] as const;
 const queryFn = (key: string) => getItem<NoteContent>(keyFrom(key));
 
-export const useUpdateNoteQuery = useSetQueryData<ReturnType<typeof queryFn>>;
+export const useUpdateNoteQuery = (key: string) =>
+  useSetQueryData<ReturnType<typeof queryFn>>(queryKey(key));
 
 export const useNoteQuery = (key: string) =>
-  useQuery(["note", key], () => queryFn(key));
+  useQuery(queryKey(key), () => queryFn(key));
