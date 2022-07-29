@@ -6,7 +6,6 @@ import {
   RefreshIcon,
 } from "@heroicons/react/solid";
 
-import { useFeedQuery } from "../api/useFeedQuery";
 import { useNotesQuery } from "../api/useNotesQuery";
 
 import {
@@ -16,26 +15,20 @@ import {
 
 import { IconGrayButton, IconGrayLink } from "./Button";
 
-// todo: make ids / keys a prop
-const feedKeyFrom = (key: string | number) => `feed-${key}`;
 const getStartOfTodayRaw = () => rawFromISOString(startOfUTCTodayToISOString());
 const stringifyAndEncode = (data: unknown) => {
   const encoded = encodeURIComponent(JSON.stringify(data));
   return `data:text/json;charset=utf-8,${encoded}`;
 };
 
-export const DownloadNotes = () => {
+export const DownloadNotes = ({ ids }: { ids: string[] }) => {
   const [state, setState] = useState<"idle" | "load">("idle");
-  const { data: feed } = useFeedQuery();
-  const { data, isFetching } = useNotesQuery(
-    (feed?.item ?? []).map(feedKeyFrom),
-    {
-      suspense: false,
-      enabled: state === "load",
-      select: stringifyAndEncode,
-      refetchInterval: 3 * 60 * 1000,
-    }
-  );
+  const { data, isFetching } = useNotesQuery(ids, {
+    suspense: false,
+    enabled: state === "load",
+    select: stringifyAndEncode,
+    refetchInterval: 3 * 60 * 1000,
+  });
 
   if (data) {
     return (

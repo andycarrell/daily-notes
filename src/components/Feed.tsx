@@ -41,7 +41,7 @@ export const Feed = () => {
   return (
     <Layout className="max-w-4xl pt-0 md:pt-12">
       <RenderIntoPortal id="header-portal">
-        <DownloadNotes />
+        <DownloadNotes ids={ids.map(feedKeyFrom)} />
       </RenderIntoPortal>
       <div className="flex flex-row w-full justify-between items-center px-4 mb-2 sm:mb-5 space-x-4">
         <h1 className="text-xl sm:text-3xl font-serif font-bold text-gray-200 sm:text-gray-300">
