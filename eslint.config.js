@@ -24,6 +24,11 @@ module.exports = {
     "react/react-in-jsx-scope": ["off"],
     "react-hooks/exhaustive-deps": ["error"],
   },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
   overrides: [
     {
       // override config files to allow them to run in node
