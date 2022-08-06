@@ -22,7 +22,7 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
 import { useEditor, EditorContent } from "@tiptap/react";
 
-import type { JSONContent } from "@tiptap/react";
+import type { JSONContent, EditorOptions } from "@tiptap/react";
 import type { NoteContent } from "../api/useNoteQuery";
 
 const getEditorClass = (c = "") =>
@@ -162,15 +162,17 @@ const useMarkdownEditor = ({
   return editor;
 };
 
-interface Props {
+export interface Props {
   content?: NoteContent | string;
   isEditable?: boolean;
+  autofocus?: EditorOptions["autofocus"];
   onChange?: (j: JSONContent) => void;
 }
 
 export const MarkdownEditor = ({
   onChange,
   content = "",
+  autofocus = false,
   isEditable = true,
 }: Props) => {
   const [hasFocus, setHasFocus] = useState(false);
@@ -178,6 +180,7 @@ export const MarkdownEditor = ({
   const editor = useMarkdownEditor({
     content,
     isEditable,
+    autofocus,
     onBlur: () => setHasFocus(false),
     onFocus: () => setHasFocus(true),
     onUpdate: ({ editor: e }) => onChange?.(e.getJSON()),

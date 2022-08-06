@@ -50,6 +50,7 @@ export const Feed = () => {
         <IconGrayButton
           aria-label="Add new note"
           onClick={() => mutate([nanoid(), ...ids])}
+          autoFocus
         >
           <ViewGridAddIcon className="h-7 w-7 sm:h-8 sm:w-8" />
         </IconGrayButton>

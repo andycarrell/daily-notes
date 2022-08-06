@@ -6,12 +6,14 @@ import { useDebounceFunction } from "../utilities/useDebounce";
 
 import { SavingIndicator } from "./SavingIndicator";
 import { MarkdownEditor } from "./MarkdownEditor";
+import type { Props as MarkdownEditorProps } from "./MarkdownEditor";
 
 interface Props {
   id: string;
+  autofocus?: MarkdownEditorProps["autofocus"];
 }
 
-export const Note = ({ id }: Props) => {
+export const Note = ({ id, autofocus }: Props) => {
   const { mutate, isLoading: isSaving } = useNoteMutation(id);
   const { isError, isLoading, isFetching, data } = useNoteQuery(id);
   const { item: content } = data ?? {};
@@ -31,6 +33,7 @@ export const Note = ({ id }: Props) => {
       <MarkdownEditor
         key={id}
         content={content ?? ""}
+        autofocus={autofocus}
         isEditable={!isFetching}
         onChange={saveNote}
       />
