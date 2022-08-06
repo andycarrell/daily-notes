@@ -6,6 +6,9 @@ import { ViewGridAddIcon } from "@heroicons/react/solid";
 import { useFeedQuery } from "../api/useFeedQuery";
 import { useFeedMutation } from "../api/useFeedMutation";
 
+import { useSearchParam } from "../utilities/useSearchParam";
+import { useScrollIntoViewport } from "../utilities/useScrollIntoViewport";
+
 import { Note } from "./Note";
 import { Layout } from "./layout";
 import { IconGrayButton } from "./Button";
@@ -29,6 +32,11 @@ export const Feed = () => {
   const { isError, data } = useFeedQuery();
   const { mutate } = useFeedMutation();
   const ids = data?.item ?? [];
+
+  const [getSearchParam, , deleteSearchParam] = useSearchParam("f");
+  useScrollIntoViewport({ id: `scroll-to-${getSearchParam()}` });
+  // Remove search param on unmount
+  useEffect(() => deleteSearchParam, [deleteSearchParam]);
 
   useEffect(() => {
     document.title = "Feed - daily-notes";
@@ -57,7 +65,7 @@ export const Feed = () => {
       </div>
       <div className="w-full divide-y divide-gray-600">
         {ids.map((id, index) => (
-          <div key={id} className="min-h-[16rem]">
+          <div key={id} className="relative min-h-[16rem]">
             {/** Render the first 3 items - assume these are 'above the fold' */}
             {index < 3 ? (
               <FeedItem id={id} />
@@ -68,6 +76,11 @@ export const Feed = () => {
                 </Suspense>
               </DeferUntilViewport>
             )}
+            <div
+              className="absolute -top-24"
+              id={`scroll-to-${id}`}
+              aria-hidden
+            />
           </div>
         ))}
       </div>
