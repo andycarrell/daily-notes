@@ -59,7 +59,7 @@
   "devDependencies": {
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
-    "@typescript-eslint/eslint-plugin": "5.35.1",
+    "@typescript-eslint/eslint-plugin": "5.36.0",
     "@typescript-eslint/parser": "5.36.0",
     "concurrently": "7.3.0",
     "copyfiles": "2.4.1",
