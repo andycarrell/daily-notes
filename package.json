@@ -21,9 +21,9 @@
     "types:check": "tsc"
   },
   "dependencies": {
-    "@heroicons/react": "1.0.6",
+    "@heroicons/react": "2.0.10",
     "@tailwindcss/typography": "0.5.4",
-    "@tanstack/react-query": "4.2.1",
+    "@tanstack/react-query": "4.2.3",
     "@tiptap/extension-blockquote": "2.0.0-beta.29",
     "@tiptap/extension-bold": "2.0.0-beta.28",
     "@tiptap/extension-bullet-list": "2.0.0-beta.29",
