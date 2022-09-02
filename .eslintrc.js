@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     browser: true,
     es2021: true,
@@ -32,7 +33,7 @@ module.exports = {
   overrides: [
     {
       // override config files to allow them to run in node
-      files: ["./*.config.js"],
+      files: ["./*.config.js", "./.*rc.js"],
       rules: {
         "@typescript-eslint/no-var-requires": ["off"],
         "node/exports-style": ["error", "module.exports"],
