@@ -17,7 +17,8 @@
     "format:check": "prettier --check .",
     "lint:check": "eslint .",
     "prime": "copyfiles public/* dist --up=1",
-    "start": "npm run prime && concurrently \"npm run types:check -- --watch\" \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\"",
+    "prestart": "npm run prime",
+    "start": "conc \"npm run types:check -- --watch\" \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\"",
     "types:check": "tsc"
   },
   "dependencies": {
