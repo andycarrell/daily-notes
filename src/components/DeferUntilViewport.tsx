@@ -7,15 +7,14 @@ interface Props {
 
 export const DeferUntilViewport = ({ children }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
-  const observerRef = useRef();
+  const observerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const observerElement = observerRef.current;
     const handle: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      });
+      if (entries.some((entry) => entry.isIntersecting)) {
+        setIsVisible(true);
+      }
     };
 
     const observer = new IntersectionObserver(handle, {
@@ -24,7 +23,11 @@ export const DeferUntilViewport = ({ children }: Props) => {
       threshold: 0.05,
     });
 
-    observer.observe(observerRef.current);
+    if (observerElement) {
+      observer.observe(observerElement);
+
+      return () => observer.disconnect();
+    }
   }, []);
 
   if (isVisible) {

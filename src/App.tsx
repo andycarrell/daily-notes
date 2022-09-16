@@ -16,7 +16,7 @@ const queryClient = new QueryClient({
 });
 
 export const App = () => {
-  const [variant, setVariant] = useState<"notes" | "feed">("notes");
+  const [variant, setVariant] = useState<"notes" | "feed">("feed");
 
   return (
     <div className="antialiased">
