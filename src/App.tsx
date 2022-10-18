@@ -11,6 +11,10 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       suspense: true,
+      networkMode: "always",
+    },
+    mutations: {
+      networkMode: "always",
     },
   },
 });
