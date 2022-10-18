@@ -62,7 +62,7 @@ export const DailyNotes = () => {
       <Card>
         <div className="min-h-[16rem] w-full">
           <Suspense fallback={null}>
-            <Note id={date} autofocus="end" />
+            <Note id={date} autofocus="start" />
           </Suspense>
         </div>
       </Card>

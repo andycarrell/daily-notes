@@ -179,8 +179,8 @@ export const MarkdownEditor = ({
 
   const editor = useMarkdownEditor({
     content,
-    isEditable,
     autofocus,
+    isEditable,
     onBlur: () => setHasFocus(false),
     onFocus: () => setHasFocus(true),
     onUpdate: ({ editor: e }) => onChange?.(e.getJSON()),
