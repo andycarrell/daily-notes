@@ -10,7 +10,7 @@
     "url": "ssh://git@github.com:andycarrell/daily-notes.git"
   },
   "scripts": {
-    "build:js": "esbuild src/index.tsx --bundle --minify --outfile=dist/bundle.js",
+    "build:js": "esbuild src/index.tsx src/sw.ts --bundle --minify --outdir=dist",
     "build:css": "postcss src/styles/index.scss -o dist/index.css",
     "build": "npm run prime && npm run build:js && npm run build:css",
     "format": "prettier --write .",
@@ -60,6 +60,7 @@
   "devDependencies": {
     "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
+    "@types/serviceworker": "0.0.56",
     "@typescript-eslint/eslint-plugin": "5.37.0",
     "@typescript-eslint/parser": "5.36.2",
     "concurrently": "7.4.0",
