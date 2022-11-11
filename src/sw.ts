@@ -2,8 +2,6 @@
 import {} from ".";
 declare const self: ServiceWorkerGlobalScope;
 
-// declare const self: typeof globalThis;
-
 // A simple, no-op service worker that takes immediate control.
 // https://stackoverflow.com/questions/33986976/how-can-i-remove-a-buggy-service-worker-or-implement-a-kill-switch/38980776#38980776
 // self.addEventListener("install", () => {
@@ -16,32 +14,50 @@ declare const self: ServiceWorkerGlobalScope;
 // Core assets
 const coreAssets = ["/index.html", "/index.js", "/site.webmanifest"];
 
-function cacheResponse(request: Request, response: Response) {
+async function saveCache(request: Request, response: Response) {
   // Create a copy of the response
   const copy = response.clone();
+
   // Open cache and save
-  return caches.open("app").then((cache) => {
-    return cache.put(request, copy);
-  });
+  const cache = await caches.open("app");
+  await cache.put(request, copy);
+
+  return response;
 }
 
-function isNetworkFirst(request: Request) {
-  return (
-    request.headers.get("Accept").includes("text/html") ||
-    request.headers.get("Accept").includes("application/json") ||
-    request.url.endsWith(".html") ||
-    request.url.endsWith("site.webmanifest")
-  );
+async function revalidateCache(request: Request) {
+  try {
+    const response = await fetch(request);
+    await saveCache(request, response);
+  } catch (error: unknown) {
+    let message = `Failed to revalidate cache for request.url ${request.url}`;
+    if (error instanceof Error && "message" in error) {
+      message = `${message}, ${error.message}`;
+    }
+    console.error(message);
+  }
 }
 
-function isOfflineFirst(request: Request) {
+function shouldCacheAsset(request: Request) {
+  const byUrl = (s: string) => request.url.endsWith(s);
+  const byHeader = (s: string) => request.headers.get("Accept").includes(s);
+
   return (
-    request.headers.get("Accept").includes("image") ||
-    request.headers.get("Accept").includes("text/css") ||
-    request.headers.get("Accept").includes("text/javascript") ||
-    request.url.endsWith(".css") ||
-    request.url.endsWith(".png") ||
-    request.url.endsWith(".js")
+    // html
+    byUrl(".html") ||
+    byHeader("text/html") ||
+    // css
+    byUrl(".css") ||
+    byHeader("text/css") ||
+    // js
+    byUrl(".js") ||
+    byHeader("text/javascript") ||
+    // images
+    byUrl(".png") ||
+    byUrl(".jpg") ||
+    byHeader("image") ||
+    // site.webmanifest
+    byUrl("site.webmanifest")
   );
 }
 
@@ -66,32 +82,20 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  if (isNetworkFirst(request)) {
+  // stale-while-revalidate
+  if (shouldCacheAsset(request)) {
     event.respondWith(
-      fetch(request)
-        .then((response) => {
-          event.waitUntil(cacheResponse(request, response));
+      caches.match(request).then((cacheResponse: Response | undefined) => {
+        if (cacheResponse) {
+          revalidateCache(request);
 
-          return response;
-        })
-        .catch(() => {
-          return caches.match(request);
-        })
-    );
-    return;
-  }
-
-  if (isOfflineFirst(request)) {
-    event.respondWith(
-      caches.match(request).then((response) => {
-        if (response) {
-          return response;
+          return cacheResponse;
         }
 
-        return fetch(request).then((response) => {
-          event.waitUntil(cacheResponse(request, response));
+        return fetch(request).then((fetchResponse) => {
+          event.waitUntil(saveCache(request, fetchResponse));
 
-          return response;
+          return fetchResponse;
         });
       })
     );
