@@ -13,3 +13,7 @@ if (container) {
     `Couldn't find element with the id: ${APP_ID}, so couldn't render the app!`
   );
 }
+
+if (navigator && navigator.serviceWorker) {
+  navigator.serviceWorker.register("sw.js");
+}
