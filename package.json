@@ -10,14 +10,15 @@
     "url": "ssh://git@github.com:andycarrell/daily-notes.git"
   },
   "scripts": {
-    "build:js": "esbuild src/index.tsx src/sw.ts --bundle --minify --outdir=dist",
+    "build": "npm run build:js && npm run build:css",
     "build:css": "postcss src/styles/index.scss -o dist/index.css",
-    "build": "npm run prime && npm run build:js && npm run build:css",
+    "build:js": "esbuild src/index.tsx src/sw.ts --bundle --minify --outdir=dist",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint:check": "eslint .",
-    "prime": "copyfiles public/* dist --up=1",
+    "prebuild": "npm run prime",
     "prestart": "npm run prime",
+    "prime": "copyfiles public/* dist --up=1",
     "start": "conc \"npm run types:check -- --watch\" \"npm run build:js -- --servedir=dist\" \"npm run build:css -- --watch\"",
     "types:check": "tsc"
   },
